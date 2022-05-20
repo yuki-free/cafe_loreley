@@ -1,8 +1,0 @@
-@use "../var" as *;
-
-h1 {
-  font-family: serif;
-  font-size: 1.5em;
-  color: $main-color;
-  @include flex-center;
-}

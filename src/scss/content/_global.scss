@@ -1,0 +1,26 @@
+@use "../var" as *;
+
+// ===========================================
+//                  header
+// ===========================================
+
+.header {
+  width: 100vw;
+  padding: 0 6vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+
+.logo {
+
+}
+
+.global-navi {
+  color: w
+}

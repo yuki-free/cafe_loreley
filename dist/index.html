@@ -9,42 +9,643 @@
 <body>
 
   <header id="header" class="header">
-    <h1 class="logo">
-      <svg src="img/logo.svg" alt="cafe loreley"></svg>
+    <h1 class="logo header__logo">
+      <a class="logo__link" href="#">
+        <svg class="logo__image" src="img/logo.svg" alt="cafe loreley"></svg>
+      </a>
     </h1>
     <nav class="global-navi header__global-navi">
       <ul class="global-navi__list">
         <li class="global-navi__item">
-          <a class="global-navi__link">CONCEPT</a>
+          <a class="global-navi__link" href="#">CONCEPT</a>
         </li>
         <li class="global-navi__item">
-          <a class="global-navi__link">MENU</a>
+          <a class="global-navi__link" href="#">MENU</a>
         </li>
         <li class="global-navi__item">
-          <a class="global-navi__link">NEWS</a>
+          <a class="global-navi__link" href="#">NEWS</a>
         </li>
         <li class="global-navi__item">
-          <a class="global-navi__link">SHOP</a>
+          <a class="global-navi__link" href="#">SHOP</a>
         </li>
         <li class="global-navi__item">
-          <a class="global-navi__link">CONTACT</a>
+          <a class="global-navi__link" href="#">CONTACT</a>
         </li>
       </ul>
-      <button class="hamburger-button" type="button">
-        <span class="hamburger-button__bar"></span>
-        <span class="hamburger-button__bar"></span>
-        <span class="hamburger-button__bar"></span>
-      </button>
+      <ul class="global-navi__image-list">
+        <li class="global-navi__image-item global-navi__image-item--concept"></li>
+        <li class="global-navi__image-item global-navi__image-item--menu"></li>
+        <li class="global-navi__image-item global-navi__image-item--news"></li>
+        <li class="global-navi__image-item global-navi__image-item--shop"></li>
+        <li class="global-navi__image-item global-navi__image-item--contact"></li>
+      </ul>
+      <div class="hamburger-button" type="button">
+        <div class="hamburger-button__inner">
+          <span class="hamburger-button__bar hamburger-button__bar--top"></span>
+          <span class="hamburger-button__bar hamburger-button__bar--middle"></span>
+          <span class="hamburger-button__bar hamburger-button__bar--bottom"></span>  
+        </div>
+        <!-- /.hamburger-button__inner -->
+      </div>
+      <!-- /.hamburger-button -->
     </nav>
   </header>
 
+  <main id="main" class="main">
+
+    <div class="hero">
+      <div class="hero__image"></div>
+      <p class="hero__catch-copy">
+        TENDER FLAVOR<br>
+        MOMENT OF BLISS
+      </p>
+    </div>
+    <!-- /.hero -->
+
+    <section id="concept" class="concept content">
+
+      <div class="intro concept__intro">
+        <h2 class="heading2 intro__title">
+          CONCEPT<br>
+          <span>コンセプト</span>
+        </h2>
+        <p class="intro__text">
+          モダンでおしゃれな空間で慌ただしい日常を忘れくつろいでいただく。<br>
+          オーガニック食品や天然調味料を使用した健康的で優しい料理とコーヒー。<br>
+          心と体が喜ぶとっておきの時間をあなたへ…
+        </p>
+        <p class="intro__catch-copy">
+          BLESSING FOR YOU
+        </p>
+      </div>
+      <!-- /.concept__intro -->
+
+      <section class="concept__content-1 media-multi">
+        <h3 class="heading3 media-multi__title">
+          優しい食材を選び抜く
+        </h3>
+        <p class="media-multi__text">
+          コーヒー豆や野菜は有機栽培されたもののみを使用しており、野菜は契約農家・直売所から届く群馬県産。<br>
+          地元産の旬の食材を可能な限り使用しております。<br>
+          また、店内調理にこだわり、素材本来の味わいを健康的に楽しんで頂くため化学調味料・着色料・保存料は店内調理で可能な限り使用しておりません。<br>
+          調味料も化学的に精製された塩ではなく、昔ながらの天日干しのミネラル分豊富な天然塩を使用しております。
+        </p>
+        <img class="media-multi__image media-multi__image--big" src="img/concept1-1.jpg">
+        <img class="media-multi__image media-multi__image--medium" src="img/concept1-2.jpg">
+        <img class="media-multi__image media-multi__image--small" src="img/concept1-3.jpg">
+      </section>
+      <!-- /.concept__content-1 -->
+      
+      <section class="concept__content-2 media-multi--reverse">
+        <h3 class="heading3 media-multi__title">
+          優しい食材を選び抜く
+        </h3>
+        <p class="media-multi__text">
+          コーヒー豆や野菜は有機栽培されたもののみを使用しており、野菜は契約農家・直売所から届く群馬県産。<br>
+          地元産の旬の食材を可能な限り使用しております。<br>
+          また、店内調理にこだわり、素材本来の味わいを健康的に楽しんで頂くため化学調味料・着色料・保存料は店内調理で可能な限り使用しておりません。<br>
+          調味料も化学的に精製された塩ではなく、昔ながらの天日干しのミネラル分豊富な天然塩を使用しております。
+        </p>
+        <img class="media-multi__image media-multi__image--big media-multi__image--reverse" src="img/concept2-1.jpg">
+        <img class="media-multi__image media-multi__image--medium media-multi__image--reverse" src="img/concept2-2.jpg">
+        <img class="media-multi__image media-multi__image--small media-multi__image--reverse" src="img/concept2-3.jpg">
+      </section>
+      <!-- /.concept__content-2 -->
+      
+    </section>
+    <!-- /.concept -->
+
+    <section id="menu" class="menu content">
+
+      <div class="cover menu__cover">
+        <h2 class="heading2 cover__title">
+          MENU<br>
+          <span>メニュー</span>
+        </h2>
+      </div>
+      <!-- /.cover -->
+
+      <div class="js-horizontal-scroll">
+
+        <section class="menu__content">
+          <div class="media menu__media">
+            <div class="media__image-outer">
+              <img class="media__image" src="img/menu__coffee-top.jpg" alt="カフェアート">
+            </div>
+            <!-- /.media__image-outer -->
+            <div class="media__body">
+              <h3 class="heading3 media__title">
+                COFFEE
+              </h3>
+              <p class="media__text">
+                上質のオーガニックコーヒー豆のみを選定し、深いコクや香り、綺麗な酸味、それぞれの個性を見事に引き出しながら、雑味やエグ味のない後味のスッキリとしたキレの良いコーヒー豆を焙煎していただいています。
+              </p>
+            </div>
+            <!-- /.media__body -->
+          </div>
+          <!-- /.media -->
+          <div class="menu__list">
+            <ul class="vertical-list">
+              <li class="vertical-card vertical-list__item">
+                <div class="vertical-card__image-outer vertical-card__image-outer--skew">
+                  <img class="vertical-card__image" src="img/menu__coffee-list1.jpg" alt="カフェラテ">
+                </div>
+                <!-- /.vertical-card__image-outer -->
+                <div class="vertical-card__body">
+                  <div class="vertical-card__title">
+                    <p class="vertical-card__title-main">
+                      カフェラテ
+                    </p>
+                    <p class="vertical-card__title-sub">
+                      ¥590
+                    </p>
+                  </div>
+                  <!-- /.vertical-card__title -->
+                  <p class="vertical-card__text">
+                    オーガニックコーヒーの深い味わいと濃厚なミルクが交じり合う1番人気商品です。
+                  </p>
+                </div>
+                <!-- /.vertical-card__body -->
+              </li>
+              <li class="vertical-card vertical-list__item">
+                <div class="vertical-card__image-outer vertical-card__image-outer--skew">
+                  <img class="vertical-card__image" src="img/menu__coffee-list2.jpg" alt="カフェ・ショコラ">
+                </div>
+                <!-- /.vertical-card__image-outer -->
+                <div class="vertical-card__body">
+                  <div class="vertical-card__title">
+                    <p class="vertical-card__title-main">
+                      カフェ・ショコラ
+                    </p>
+                    <p class="vertical-card__title-sub">
+                      ¥640
+                    </p>
+                  </div>
+                  <!-- /.vertical-card__title -->
+                  <p class="vertical-card__text">
+                    チョコレートとミルクを加えた上品で濃厚な味わいです。
+                  </p>
+                </div>
+                <!-- /.vertical-card__body -->
+              </li>
+              <li class="vertical-card vertical-list__item">
+                <div class="vertical-card__image-outer vertical-card__image-outer--skew">
+                  <img class="vertical-card__image" src="img/menu__coffee-list3.jpg" alt="カフェグラッセ">
+                </div>
+                <!-- /.vertical-card__image-outer -->
+                <div class="vertical-card__body">
+                  <div class="vertical-card__title">
+                    <p class="vertical-card__title-main">
+                      カフェグラッセ
+                    </p>
+                    <p class="vertical-card__title-sub">
+                      ¥690
+                    </p>
+                  </div>
+                  <!-- /.vertical-card__title -->
+                  <p class="vertical-card__text">
+                    コーヒーに溶けるバニラアイスが絶妙なハーモニーを奏でます。
+                  </p>
+                </div>
+                <!-- /.vertical-card__body -->
+              </li>
+            </ul>
+          </div>
+          <!-- /.menu__list -->
+        </section>
+        <!-- /.menu__content -->
+  
+        <section class="menu__content">
+          <div class="media menu__media">
+            <div class="media__image-outer">
+              <img class="media__image" src="img/menu__food-top.jpg" alt="料理の盛り付け">
+            </div>
+            <!-- /.media__image-outer -->
+            <div class="media__body">
+              <h3 class="heading3 media__title">
+                FOOD
+              </h3>
+              <p class="media__text">
+                からだにやさしい食をテーマに旬のオーガニック野菜や手打ち生パスタを使用した素材のうまみを存分に味わえる一品です。
+              </p>
+            </div>
+            <!-- /.media__body -->
+          </div>
+          <!-- /.media -->
+          <div class="menu__list">
+            <ul class="vertical-list">
+              <li class="vertical-card vertical-list__item">
+                <div class="vertical-card__image-outer">
+                  <img class="vertical-card__image" src="img/menu__food-list1.jpg" alt="完熟トマトソーススパゲティ">
+                </div>
+                <!-- /.vertical-card__image-outer -->
+                <div class="vertical-card__body">
+                  <div class="vertical-card__title">
+                    <p class="vertical-card__title-main">
+                      完熟トマトソーススパゲティ
+                    </p>
+                    <p class="vertical-card__title-sub">
+                      ¥1,190
+                    </p>
+                  </div>
+                  <!-- /.vertical-card__title -->
+                  <p class="vertical-card__text">
+                    完熟トマトをたっぷり使った濃厚トマトソースが絡み合う当店一番人気のパスタです。
+                  </p>
+                </div>
+                <!-- /.vertical-card__body -->
+              </li>
+              <li class="vertical-card vertical-list__item">
+                <div class="vertical-card__image-outer">
+                  <img class="vertical-card__image" src="img/menu__food-list2.jpg" alt="旬野菜のクリームスパゲティ">
+                </div>
+                <!-- /.vertical-card__image-outer -->
+                <div class="vertical-card__body">
+                  <div class="vertical-card__title">
+                    <p class="vertical-card__title-main">
+                      旬野菜のクリームスパゲティ
+                    </p>
+                    <p class="vertical-card__title-sub">
+                      ¥1,290
+                    </p>
+                  </div>
+                  <!-- /.vertical-card__title -->
+                  <p class="vertical-card__text">
+                    濃厚なクリームソースと時々の旬の野菜が楽しめるパスタです。
+                  </p>
+                </div>
+                <!-- /.vertical-card__body -->
+              </li>
+              <li class="vertical-card vertical-list__item">
+                <div class="vertical-card__image-outer">
+                  <img class="vertical-card__image" src="img/menu__food-list3.jpg" alt="和牛ボロネーゼラザニア">
+                </div>
+                <!-- /.vertical-card__image-outer -->
+                <div class="vertical-card__body">
+                  <div class="vertical-card__title">
+                    <p class="vertical-card__title-main">
+                      和牛ボロネーゼラザニア
+                    </p>
+                    <p class="vertical-card__title-sub">
+                      ¥1,690
+                    </p>
+                  </div>
+                  <!-- /.vertical-card__title -->
+                  <p class="vertical-card__text">
+                    ジューシーな和牛ボロネーゼと自家製平打ちパスタをカリカリに焼き上げました。
+                  </p>
+                </div>
+                <!-- /.vertical-card__body -->
+              </li>
+              <li class="vertical-card vertical-list__item">
+                <div class="vertical-card__image-outer">
+                  <img class="vertical-card__image" src="img/menu__food-list4.jpg" alt="アボカドと木の実のサラダ">
+                </div>
+                <!-- /.vertical-card__image-outer -->
+                <div class="vertical-card__body">
+                  <div class="vertical-card__title">
+                    <p class="vertical-card__title-main">
+                      アボカドと木の実のサラダ
+                    </p>
+                    <p class="vertical-card__title-sub">
+                      ¥890
+                    </p>
+                  </div>
+                  <!-- /.vertical-card__title -->
+                  <p class="vertical-card__text">
+                    完熟トロトロのアボカドと栄養たっぷりの木の実をふんだんに使ったサラダです。
+                  </p>
+                </div>
+                <!-- /.vertical-card__body -->
+              </li>
+            </ul>
+          </div>
+          <!-- /.menu__list -->
+        </section>
+        <!-- /.menu__content -->
+  
+        <section class="menu__content">
+          <div class="media menu__media">
+            <div class="media__image-outer">
+              <img class="media__image" src="img/menu__dessert-top.jpg" alt="デザートの盛り付け">
+            </div>
+            <!-- /.media__image-outer -->
+            <div class="media__body">
+              <h3 class="heading3 media__title">
+                DESSERT
+              </h3>
+              <p class="media__text">
+                契約養鶏所から取り寄せる新鮮な卵で焼きあげるふわふわな生地、採れたての新鮮な果実をふんだんりあしらったデザートはコーヒーのお供にぴったりです。<br>
+                大地の恵みが育んだ素材そのもののおいしさをお届けします。
+              </p>
+            </div>
+            <!-- /.media__body -->
+          </div>
+          <!-- /.media -->
+          <div class="menu__list">
+            <ul class="vertical-list">
+              <li class="vertical-card vertical-list__item">
+                <div class="vertical-card__image-outer">
+                  <img class="vertical-card__image" src="img/menu__dessert-list1.jpg" alt="ジュージーベリーのパンケーキタワー">
+                </div>
+                <!-- /.vertical-card__image-outer -->
+                <div class="vertical-card__body">
+                  <div class="vertical-card__title">
+                    <p class="vertical-card__title-main">
+                      ジュージーベリーのパンケーキタワー
+                    </p>
+                    <p class="vertical-card__title-sub">
+                      ¥890
+                    </p>
+                  </div>
+                  <!-- /.vertical-card__title -->
+                  <p class="vertical-card__text">
+                    果肉がジューシーなベリーを贅沢にあしらったパンケーキタワーです。
+                  </p>
+                </div>
+                <!-- /.vertical-card__body -->
+              </li>
+              <li class="vertical-card vertical-list__item">
+                <div class="vertical-card__image-outer">
+                  <img class="vertical-card__image" src="img/menu__dessert-list2.jpg" alt="たっぷりイチゴのふわとろクレープ">
+                </div>
+                <!-- /.vertical-card__image-outer -->
+                <div class="vertical-card__body">
+                  <div class="vertical-card__title">
+                    <p class="vertical-card__title-main">
+                      たっぷりイチゴのふわとろクレープ
+                    </p>
+                    <p class="vertical-card__title-sub">
+                      ¥790
+                    </p>
+                  </div>
+                  <!-- /.vertical-card__title -->
+                  <p class="vertical-card__text">
+                    新鮮なイチゴの酸味と濃厚クリームをふわとろのクレープで閉じ込めました。
+                  </p>
+                </div>
+                <!-- /.vertical-card__body -->
+              </li>
+              <li class="vertical-card vertical-list__item">
+                <div class="vertical-card__image-outer">
+                  <img class="vertical-card__image" src="img/menu__dessert-list3.jpg" alt="濃厚チョコソースワッフル">
+                </div>
+                <!-- /.vertical-card__image-outer -->
+                <div class="vertical-card__body">
+                  <div class="vertical-card__title">
+                    <p class="vertical-card__title-main">
+                      濃厚チョコソースワッフル
+                    </p>
+                    <p class="vertical-card__title-sub">
+                      ¥790
+                    </p>
+                  </div>
+                  <!-- /.vertical-card__title -->
+                  <p class="vertical-card__text">
+                    濃厚なチョコレートとふわふわなワッフルの食感がたまらないデザートです。
+                  </p>
+                </div>
+                <!-- /.vertical-card__body -->
+              </li>
+            </ul>
+          </div>
+          <!-- /.menu__list -->
+        </section>
+        <!-- /.menu__content -->
+  
+      </div>
+      <!-- /.js-horizontal-scroll -->
+
+    </section>
+    <!-- /.menu -->
+
+    <section id="news" class="news content">
+
+      <h2 class="heading2 news__title">
+        NEWS<br>
+        <span>ニュース</span>
+      </h2>
+       
+      <div class="news__content">
+
+        <dl class="stack-list">
+          <div class="stack-list__item">
+            <span class="stack-list__bar"></span>
+            <dt class="stack-list__term">
+              <time datetime="2022-05-10">2022.05.10</time>
+            </dt>
+            <dl class="stack-list__description">
+              <span class="label">EVENT</span>
+              5/16~ TAKE OUT 10%OFFキャンペーン
+            </dl>
+          </div>
+          <!-- /.stack-list__item -->
+          <div class="stack-list__item">
+            <span class="stack-list__bar"></span>
+            <dt class="stack-list__term">
+              <time datetime="2022-04-01">2022.04.01</time>
+            </dt>
+            <dl class="stack-list__description">
+              <span class="label">NEWS</span>
+              春の新作メニューのご紹介
+            </dl>
+          </div>
+          <!-- /.stack-list__item -->
+          <div class="stack-list__item">
+            <span class="stack-list__bar"></span>
+            <dt class="stack-list__term">
+              <time datetime="2022-03-07">2022.03.07</time>
+            </dt>
+            <dl class="stack-list__description">
+              <span class="label">EVENT</span>
+              3/11~3/14 ホワイトデーキャンペーンのお知らせ
+            </dl>
+          </div>
+          <!-- /.stack-list__item -->
+          <div class="stack-list__item">
+            <span class="stack-list__bar"></span>
+            <dt class="stack-list__term">
+              <time datetime="2022-02-07">2022.02.07</time>
+            </dt>
+            <dl class="stack-list__description">
+              <span class="label">EVENT</span>
+              2/11~2/14 バレンタインデーキャンペーンのお知らせ　
+            </dl>
+          </div>
+          <!-- /.stack-list__item -->
+        </dl>
+
+      </div>
+      <!-- /.news__content -->
+
+    </section>
+    <!-- /.news -->
+
+    <section id="shop" class="shop content">
+
+      <h2 class="heading2 intro__title">
+        SHOP<br>
+        <span>ショップ</span>
+      </h2>
+
+      <section class="shop__content">
+        <div class="media shop__media">
+          <div class="media__image-outer">
+            <img class="media__image" src="img/shop.jpg" alt="店舗外観">
+          </div>
+          <!-- /.media__image-outer -->
+          <div class="media__body">
+            <h3 class="heading3 media__title">
+              ACCESS
+            </h3>
+            <p class="media__sub-title">
+              カフェ ローレライ
+            </p>
+            <dl class="media__definition">
+              <dt class="media__term">
+                住所
+              </dt>
+              <dd class="media__description">
+                〒372-0082<br>
+                群馬県伊勢崎市宮子町0000-0<br>
+                <a class="media__description-link" href="#">GOOGLE MAP</a>
+              </dd>
+              <dt class="media__term">
+                電話番号
+              </dt>
+              <dd class="media__description">
+                0270-00-0000
+              </dd>
+              <dt class="media__term">
+                営業時間
+              </dt>
+              <dd class="media__description">
+                11:00~21:00 (L.o. 20:00)
+              </dd>
+            </dl>
+          </div>
+          <!-- /.media__body -->
+        </div>
+        <!-- /.media -->  
+      </section>
+      <!-- /.shop__content -->
+
+      <section class="shop__content">
+        <div class="gallery">
+          <h3 class="heading3 gallery__title">
+            GALLERY
+          </h3>
+          <ul class="gallery__list">
+            <li class="gallery__item">
+              <img class="gallery__image" src="img/shop__gallery1.jpg" alt="コーヒー">
+            </li>
+            <li class="gallery__item">
+              <img class="gallery__image" src="img/shop__gallery2.jpg" alt="店内イメージ">
+            </li>
+            <li class="gallery__item">
+              <img class="gallery__image" src="img/shop__gallery3.jpg" alt="キッチン">
+            </li>
+          </ul>
+        </div>
+        <!-- /.gallery -->
+      </section>
+      <!-- /.shop__content -->
+
+    </section>
+    <!-- /.shop -->
+
+    <div class="sns">
+      <div class="sns__inner">
+        <p class="sns__text">
+          FOLLOW US
+        </p>
+        <ul class="sns__list">
+          <li class="sns__item">
+            <a class="sns__link" href="#"></a>
+          </li>
+          <li class="sns__item">
+            <a class="sns__link" href="#"></a>
+          </li>
+          <li class="sns__item">
+            <a class="sns__link" href="#"></a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.sns__inner -->
+    </div>
+    <!-- /.sns -->
+
+    <div class="pillar">
+      <div class="pillar__index">
+        <small>index</small>
+      </div>
+      <!-- /.pillar__index -->
+      <div class="pillar__copy-right">
+        <small>©︎ 2022 Cafe Loreley All Rights Reserved.</small>
+      </div>
+      <!-- /.pillar__copy-right -->
+    </div>
+  </main>
+
   <footer id="footer" class="footer">
     <div class="footer__inner">
-      <div class="footer__main-content">
-        
+      <div class="footer__main">
+        <h1 class="logo footer__main-logo">
+          <a class="logo__link" href="#">
+            <svg src="img/logo.svg" alt="cafe loreley"></svg>
+          </a>
+        </h1>
+        <p class="footer__main-body">
+          〒372-0082<br>
+          群馬県伊勢崎市宮子町0000-0<br>
+          TEL:0270-00-0000
+        </p>
       </div>
+      <!-- /.footer__main -->
+      <div class="site-map footer__site-map">
+        <ul class="site-map-list">
+          <li class="site-map__item">
+            <a class="site-map__link" href="#">CONCEPT</a>
+          </li>
+          <li class="site-map__item">
+            <a class="site-map__link" href="#">MENU</a>
+          </li>
+          <li class="site-map__item">
+            <a class="site-map__link" href="#">NEWS</a>
+          </li>
+          <li class="site-map__item">
+            <a class="site-map__link" href="#">SHOP</a>
+          </li>
+          <li class="site-map__item">
+            <a class="site-map__link" href="#">CONTACT</a>
+          </li>
+          <li class="site-map__item">
+            <a class="site-map__link" href="#">PRIVACY POLICY</a>
+          </li>
+          <li class="site-map__item">
+            SNS
+            <ul class="site-map__second-list">
+              <li class="site-map__second-item">
+                <a class="site-map__second-link" href="#">Twitter</a>
+              </li>
+              <li class="site-map__second-item">
+                <a class="site-map__second-link" href="#">Facebook</a>
+              </li>
+              <li class="site-map__second-item">
+                <a class="site-map__second-link" href="#">YouTube</a>
+              </li>
+            </ul>
+          </li>
+        </ul>  
+      </div>
+      <!-- /.site-map -->
+      <p class="copy-right footer__copy-right">
+        <small>©︎ 2022 Cafe Loreley All Rights Reserved.</small>
+      </p>   
     </div>
+    <!-- /.footer__inner -->
   </footer>
+
   <script src="main.js"></script>
 </body>
 </html>
