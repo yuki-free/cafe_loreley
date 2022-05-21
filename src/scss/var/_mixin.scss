@@ -1,3 +1,14 @@
+$breakpoint: (
+  tab: "screen and (min-width: 600px)",
+  pc: "screen and (min-width: 1024px)"
+);
+
+@mixin mediaquery($bp) {
+  @media #{map-get($breakpoint, $bp)} {
+    @content;
+  }
+}
+
 @mixin flex-center {
   display: flex;
   justify-content: center;
