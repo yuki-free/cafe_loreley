@@ -9,6 +9,16 @@ $breakpoint: (
   }
 }
 
+@mixin sp-padding {
+  padding-left: calc(25 / 375 * 100vw);
+  padding-right: calc(25 / 375 * 100vw);
+}
+
+@mixin pc-padding {
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
 @mixin flex-center {
   display: flex;
   justify-content: center;

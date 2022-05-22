@@ -3,11 +3,34 @@
 .hero {
   width: 100%;
   height: 100vh;
-  // min-height: 520px;
+  min-height: 125vw;
+  position: relative;
+
+  @include mediaquery(pc) {
+    min-height: 45vw;
+  }
+
+  &__image {
+    background: url(img/hero-1.jpg) center/cover;
+    width: 100%;
+    height: 100%;
+  
+  }
+
+  &__catch-copy {
+    font-size: 6em;
+    color: $base-color;
+    position: absolute;
+    right: calc(25 / 375 * 100vw);
+    bottom: 0;
+    left: calc(25 / 375 * 100vw);
+    line-height: 1.2;
+
+    @include mediaquery(pc) {
+      right: 10vw;
+      left: 10vw;
+      font-size: 8.181818181818182em;
+    }
+  }
 }
 
-.hero__image {
-  background: url(img/hero-1.jpg) center/cover;
-  width: 100%;
-  height: 100%;
-}

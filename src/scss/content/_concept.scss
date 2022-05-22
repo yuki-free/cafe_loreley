@@ -1,0 +1,159 @@
+@use "../var" as *;
+
+// ===========================================
+//                  concept
+// ===========================================
+
+.concept {
+  overflow-x: hidden;
+
+  &__main-title {
+    text-align: center;
+  }
+
+  &__sub-title {
+    text-align: center;
+  }
+}
+
+// ===========================================
+//                  intro
+// ===========================================
+
+.intro {
+  padding-top: min(calc(50 / 375 * 100vw));
+
+  &__text {
+    text-align: center;
+  }
+
+  &__catch-copy-area {
+    height: 12em;
+    width: 100%;
+    position: relative;
+
+    @include mediaquery(pc) {
+      height: 18em;
+    }
+  }
+
+  &__catch-copy-container {
+    display: flex;
+    width: max-content;
+    position: absolute;
+    top: -2em;
+    left: 0;
+    z-index: -1;
+
+    @include mediaquery(pc) {
+      top: -6em;
+    }
+  }
+
+  &__catch-copy {
+    font-size: 12em;
+    font-weight: 500;
+    line-height: 1;
+    background: $accent-color;
+    -webkit-background-clip: text;
+    color: transparent;
+
+    @include mediaquery(pc) {
+      font-size: 18em;
+    }
+  }
+}
+
+// ===========================================
+//       concept__content media-multi
+// ===========================================
+
+.media-multi {
+  padding: calc(50 / 375 * 100vw) 0;
+
+  @include mediaquery(pc) {
+    padding: 5vw 0;
+    position: relative;
+  }
+
+  &__body {
+    padding-bottom: calc(25 / 375 * 100vw);
+
+    @include mediaquery(pc) {
+      padding-left: 56vw;
+      padding-bottom: 60vw;
+    }
+  }
+
+  &__title {
+    @include mediaquery(pc) {
+      width: 28vw;
+    }
+  }
+
+  &__text {
+    @include mediaquery(pc) {
+      width: 28vw;
+    }
+  }
+
+  &__image {
+    object-fit: cover;
+    margin-bottom: calc(25 / 375 * 100vw);
+    max-width: none;
+
+    @include mediaquery(pc) {
+      position: absolute;
+      z-index: -1;
+    }
+
+    &--big {
+      width: 100vw;
+      height: calc(100vw * .75);
+      margin-left: calc((25 / 375 * -100vw));
+
+      @include mediaquery(pc) {
+        width: 60vw;
+        height: 40vw;
+        margin: 0;
+        top: 3vw;
+        left: 0;
+      }
+    }
+
+    &--medium {
+      margin-left: calc(25vw - (25 / 375 * 100vw));
+      width: 75vw;
+      height: calc(75vw * .75);
+
+      @include mediaquery(pc) {
+        width: 44vw;
+        height: 29.33333333333333vw;
+        margin: 0;
+        top: 37vw;
+        left: 50vw;
+      }
+
+      &-reverse {
+        margin-left: calc((25 / 375 * -100vw));
+      }
+    }
+
+    &--small {
+      width: 50vw;
+      height: calc(50vw * .75);
+
+      @include mediaquery(pc) {
+        width: 32vw;
+        height: 21.33333333333333vw;
+        margin: 0;
+        top: 60vw;
+        left: 10vw;
+      }
+
+      &-reverse {
+        margin-left: calc(50vw - (50 / 375 * 100vw));
+      }
+    }
+  }
+}

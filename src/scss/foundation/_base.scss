@@ -1,10 +1,16 @@
 @use "../var" as *;
 
 body {
-  font-family: 'Cormorant', '游明朝';
+  font-family: 'Cormorant Infant', 'Yu Mincho','YuMincho', serif;
   width: 100%;
   color: #586166;
+  font-size: min(calc(12 / 375 * 100vw), 20px);
+  line-height: 1;
   overflow-x: hidden;
+
+  @include mediaquery(pc) {
+    font-size: calc(22 / 1920 * 100vw);
+  }
 }
 
 img {
@@ -14,35 +20,31 @@ img {
 
 a {
   color: inherit;
+  font-size: inherit;
   text-decoration: none;
 }
 
 h2 {
-  font-size: calc(60 / 375 * 100vw);
+  font-size: 5em;
   font-weight: 400;
 
   @include mediaquery(pc) {
-    font-size: calc(160 / 1920 * 100vw);
+    font-size: 9.818181818181818em;
   }
 }
 
 h3 {
-  font-size: calc(20 / 375 * 100vw);
-  font-weight: 500;
+  font-size: 1.666666666666667em;
+  line-height: 1.8;
 
   @include mediaquery(pc) {
-    font-size: calc(44 / 1920 * 100vw);
+    font-size: 2em;
   }
 }
 
 p {
-  font-size: calc(14 / 375 * 100vw);
-  font-weight: 400;
-  line-height: 2.8;
-
-  @include mediaquery(pc) {
-    font-size: calc(22 / 1920 * 100vw);
-  }
+  line-height: 2.4;
+  text-align: justify;
 }
 
 ul {
