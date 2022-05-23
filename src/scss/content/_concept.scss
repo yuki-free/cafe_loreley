@@ -7,6 +7,10 @@
 .concept {
   overflow-x: hidden;
 
+  &__title {
+    margin-bottom: 3vw;
+  }
+
   &__main-title {
     text-align: center;
   }
@@ -79,10 +83,17 @@
   &__body {
     padding-bottom: calc(25 / 375 * 100vw);
 
+      
+    }
     @include mediaquery(pc) {
       padding-left: 56vw;
       padding-bottom: 60vw;
     }
+
+    &--reverse {
+      @include mediaquery(pc) {
+        padding-left: 16vw;
+      }
   }
 
   &__title {
@@ -119,6 +130,13 @@
         top: 3vw;
         left: 0;
       }
+
+      &-reverse {
+        @include mediaquery(pc) {
+          left: auto;
+          right: 0;
+        }
+      }
     }
 
     &--medium {
@@ -136,6 +154,11 @@
 
       &-reverse {
         margin-left: calc((25 / 375 * -100vw));
+
+        @include mediaquery(pc) {
+          left: auto;
+          right: 50vw;          
+        }
       }
     }
 
@@ -153,6 +176,11 @@
 
       &-reverse {
         margin-left: calc(50vw - (50 / 375 * 100vw));
+
+        @include mediaquery(pc) {
+          left: auto;
+          right: 10vw;          
+        }
       }
     }
   }

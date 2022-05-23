@@ -1,0 +1,123 @@
+@use "../var" as *;
+
+// ===========================================
+//                  shop
+// ===========================================
+
+.shop {
+
+  &__title {
+    margin-bottom: 3vw;
+
+    @include mediaquery(pc) {
+      padding-left: 10vw;
+    }
+  }
+}
+
+// ===========================================
+//                  media
+// ===========================================
+
+.media {
+  padding-bottom: 5vw;
+
+  @include mediaquery(pc) {
+    display: flex;
+  }
+
+  &__image-outer {
+    width: 100vw;
+    height: 75vw;
+    margin-left: -6.6666666667vw;
+
+    @include mediaquery(pc) {
+      width: 62vw;
+      height: 41.33333333333333vw;
+      margin-left: -6.6666666667vw;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__body {
+    padding: 3vw 0;
+    line-height: 1.6;
+
+    @include mediaquery(pc) {
+      width: 30vw;
+      padding: 0 0 0 5vw;
+    }
+  }
+
+  &__sub-title {
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  &__definition-item {
+    display: flex;
+    padding-bottom: 2vw;
+
+    @include mediaquery(pc) {
+      padding-bottom: 1vw;
+    }
+  }
+
+  &__term {
+    width: 25%;
+  }
+
+  &__description {
+    width: 75%;
+  }
+}
+
+// ===========================================
+//                  gallery
+// ===========================================
+
+.gallery {
+  margin-left: -6.6666666667vw;
+  padding-bottom: 15vw;
+  width: 100vw;
+  overflow: hidden;
+
+  @include mediaquery(pc) {
+    margin-left: 0;
+    @include pc-padding;
+  }
+
+  &__title {
+    text-align: center;
+    margin-bottom: 3vw;
+  }
+
+  &__list {
+    display: flex;
+    width: max-content;
+  }
+
+  &__item {
+    width: 73.33333333333333vw;
+    height: 97.7777777vw;
+    margin-right: 6.6666666667vw;
+
+    @include mediaquery(pc) {
+      width: 38.5vw;
+      height: 28.875vw;
+      margin-right: 3vw;
+      }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: none;
+  }
+}

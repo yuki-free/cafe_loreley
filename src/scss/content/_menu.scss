@@ -1,0 +1,177 @@
+@use "../var" as *;
+
+// ===========================================
+//                  menu
+// ===========================================
+
+.menu {
+  @include mediaquery(pc) {
+    overflow-x: scroll;
+    width: 100vw;
+  }
+
+  &__sub-title {
+    text-align: center;
+  }
+
+  &__content {
+    @include mediaquery(pc) {
+      display: flex;
+      width: max-content;
+    }
+  }
+
+  &__item {
+    @include mediaquery(pc) {
+      display: flex;
+      width: max-content;
+    }
+  }
+}
+
+// ===========================================
+//                  cover
+// ===========================================
+
+.cover {
+  width: 100vw;
+  max-width: none;
+  height: 100vh;
+  min-height: 125vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(img/menu-top.jpg) center/cover no-repeat;
+  color: $base-color;
+
+  @include mediaquery(pc) {
+    min-height: 45vw;
+  }
+}
+
+// ===========================================
+//                  media-vertical
+// ===========================================
+
+.media-vertical {
+  @include mediaquery(pc) {
+    display: flex;
+  }
+
+  &__image-outer {
+    width: 100vw;
+    height: 75vw;
+    margin-left: -6.6666666667vw;
+
+    @include mediaquery(pc) {
+      width: 38vw;
+      height: 100vh;
+      margin-left: 0;
+      overflow: hidden;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    object-fit: cover;
+
+    @include mediaquery(pc) {
+      width: 120%;
+    }
+  }
+
+  &__body {
+    padding: 3vw 0 6.6666666667vw;
+
+    @include mediaquery(pc) {
+      padding: 6vh 5vw 0 3vw;
+    }
+  }
+
+  &__title {
+    @include mediaquery(pc) {
+      width: 14vw;
+      line-height: 1;
+    }
+  }
+
+  &__text {
+    @include mediaquery(pc) {
+      width: 14vw;
+    }
+  }
+}
+
+// ===========================================
+//                  vertical-list
+// ===========================================
+
+.vertical-list {
+  padding-bottom: 6.6666666667vw;
+
+  @include mediaquery(pc) {
+    display: flex;
+    width: max-content;
+    padding-bottom: 0;
+    padding-top: 5vh;
+    padding-right: 4vw;
+  }
+}
+
+.vertical-card {
+  @include mediaquery(pc) {
+    width: 16.66666666666667vw;
+    margin-right: 3.5vw;
+  }
+
+  &__image-outer {
+    overflow: hidden;
+    width: 100%;
+    height: 57.86666666666667vw;
+    background: $accent-color;
+
+    @include mediaquery(pc) {
+      height: 68vh;
+    }
+
+    &--skew {
+      clip-path: polygon(0 15%, 100% 0%, 100% 85%, 0% 100%);
+
+      @include mediaquery(pc) {
+        clip-path: polygon(0 10%, 100% 0%, 100% 90%, 0% 100%);
+      }
+    }
+  }
+
+  &__image {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__body {
+    padding: 4vw 0 6.6666666667vw;
+
+    @include mediaquery(pc) {
+      padding: 3vh 0 0;
+    }
+  }
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+
+    &-main,
+    &-sub {
+      line-height: 1.6;
+    }
+  }
+
+  &__text {
+    line-height: 2;
+  }
+}

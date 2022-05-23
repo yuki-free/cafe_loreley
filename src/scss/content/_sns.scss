@@ -1,0 +1,13 @@
+@use "../var" as *;
+
+// ===========================================
+//                  sns
+// ===========================================
+
+.sns {
+  width: 100vw;
+  height: 50vw;
+  background: $accent-color;
+  @include flex-center;
+  color: #fff;
+}

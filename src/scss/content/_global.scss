@@ -30,9 +30,7 @@
 //                  heading
 // ===========================================
 
-.heading2 {
-  padding-bottom: 3vw;
-  
+.heading2 {  
   &__sub {
     font-size: .8em;
     line-height: 1;
@@ -58,15 +56,16 @@
   @include mediaquery(pc) {
     padding: 3vw 5vw 0;
   }
+
+  &__logo {
+    @include mediaquery(pc) {
+      margin-right: 20vw;
+    }
+  }
 }
 
 .logo {
   line-height: 0;
-
-  @include mediaquery(pc) {
-    margin-right: 20vw;
-  }
-
 
   &__link {
     display: block;
@@ -285,7 +284,6 @@
   }
 
   &__inner {
-    height: max-contet;
 
     @include mediaquery(pc) {
       width: 100%;
@@ -332,6 +330,10 @@
 
     @include mediaquery(pc) {
       margin-bottom: 9vh;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -391,4 +393,15 @@
       transform: translate(50%, -50%) rotate(90deg);
     }
   }
+}
+
+// ===========================================
+//                  label
+// ===========================================
+
+.label {
+  display: inline-block;
+  padding: .6em .8em;
+  background: $base-font-color;
+  color: $base-color;
 }

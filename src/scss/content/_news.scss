@@ -1,0 +1,77 @@
+@use "../var" as *;
+
+// ===========================================
+//                  news
+// ===========================================
+
+.news {
+  padding-bottom: 10vw;
+
+  @include mediaquery(pc) {
+    padding: 0 10vw 10vw;
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 3vw;
+  }
+}
+
+// ===========================================
+//                  stack-list
+// ===========================================
+
+.stack-list {
+
+  &__item {
+    position: relative;
+    padding: 5vw 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    @include mediaquery(pc) {
+      padding: 4vw 0;
+    }  
+  }
+
+  &__bar {
+    width: 100%;
+    height: 1px;
+    background: $base-font-color;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &__term {
+    width: 25%;
+
+    @include mediaquery(pc) {
+      width: 12%;
+    }
+  }
+
+  &__label {
+    width: 75%;
+
+    @include mediaquery(pc) {
+      width: 12%;
+    }
+  }
+
+  &__description {
+    width: 100%;
+    line-height: 1.6;
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-top: 2vw;
+
+    @include mediaquery(pc) {
+      width: 76%;
+      margin-top: 0;
+    }
+  }
+}
