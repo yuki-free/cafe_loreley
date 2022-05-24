@@ -6,8 +6,48 @@
 
 .sns {
   width: 100vw;
-  height: 50vw;
+  height: 75vw;
   background: $accent-color;
   @include flex-center;
   color: #fff;
+
+  @include mediaquery(pc) {
+    height: 100vh;
+    min-height: 45vw;
+  }
+
+  &__title {
+    font-size: 4em;
+    margin-bottom: 3vw;
+
+    @include mediaquery(pc) {
+      font-size: 8em;
+      margin-bottom: 3vh;
+      }
+  }
+
+  &__list {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: 5vw;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: 10px;
+  }
+
+  &__image {
+    width: min(calc(20 / 375 * 100vw), 36px);
+    height: auto;
+
+    @include mediaquery(pc) {
+      width: calc(62 / 1920 * 100vw);
+    }
+  }
 }

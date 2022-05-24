@@ -1,0 +1,25 @@
+@use "../var" as *;
+
+// ===========================================
+//                  privacy
+// ===========================================
+
+.privacy {
+  &__body {
+    padding-top: 3vw;
+    padding-bottom: 10vw;
+    @include sp-padding;
+
+    @include mediaquery(pc) {
+      @include pc-padding;
+    }
+  }
+}
+
+.privacy-content {
+  margin-bottom: 5vw;
+
+  &__contact {
+    margin-top: 3vw;
+  }
+}
