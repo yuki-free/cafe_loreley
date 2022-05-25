@@ -182,73 +182,100 @@
       <!-- /.top -->
 
       <div class="contact__body">
-        <form class="form contact__form">
-          <dl class="form__list">
-            <dt class="form__label-outer">
-              <label class="form__label" for="subject">件名</label>
-              <span class="label">必須</span>
-            </dt>
-            <dd class="form__input-outer">
-              <select id="subject" class="form__input form__input--select" name="subject">
-                <option value="">選択して下さい</option>
-                <option value="お仕事のご相談">お仕事のご相談</option>
-                <option value="採用に関して">採用に関して</option>
-                <option value="その他のお問い合わせ">その他のお問い合わせ</option>
-              </select>
-            </dd>
-            <dt class="form__label-outer">
-              <label class="form__label" for="name">お名前</label>
-              <span class="label">必須</span>
-            </dt>
-            <dd class="form__input-outer">
-              <input id="name" class="form__input" type="text" name="name" placeholder="山田太郎" required> 
-            </dd>
-            <dt class="form__label-outer">
-              <label class="form__label" for="company">社名 / 所属</label>
-            </dt>
-            <dd class="form__input-outer">
-              <input id="company" class="form__input" type="text" name="company" placeholder="カフェローレライ"> 
-            </dd>
-            <dt class="form__label-outer">
-              <label class="form__label" for="post">郵便番号</label>
-            </dt>
-            <dd class="form__input-outer">
-              <input id="post" class="form__input" type="text" name="post" placeholder="372-0082"> 
-            </dd>
-            <dt class="form__label-outer">
-              <label class="form__label" for="address">住所</label>
-            </dt>
-            <dd class="form__input-outer">
-              <input id="address" class="form__input" type="text" name="address" placeholder="群馬県伊勢崎市宮子町1234-5"> 
-            </dd>
-            <dt class="form__label-outer">
-              <label class="form__label" for="tel">電話番号</label>
-            </dt>
-            <dd class="form__input-outer">
-              <input id="tel" class="form__input" type="tel" name="tel" placeholder="090-1234-5678"> 
-            </dd>
-            <dt class="form__label-outer">
-              <label class="form__label" for="email">メールアドレス</label>
-              <span class="label">必須</span>
-            </dt>
-            <dd class="form__input-outer">
-              <input id="email" class="form__input" type="email" name="email" placeholder="sample@gmail.com" required> 
-            </dd>
-            <dt class="form__label-outer">
-              <label class="form__label" for="content">お問い合わせ内容</label>
-              <span class="label">必須</span>
-            </dt>
-            <dd class="form__input-outer">
-              <textarea id="content" class="form__input form__input--area" name="content" placeholder="お問い合わせ内容を入力して下さい" required></textarea>
-            </dd>
-          </dl>
-        </form>
-
-        
-
+        <div class="contact__container">
+          <form class="form contact__form">
+            <dl class="form__list">
+              <dt class="form__label-outer">
+                <label class="form__label" for="subject">件名</label>
+                <span class="label">必須</span>
+              </dt>
+              <dd class="form__input-outer form__input-outer--in-triangle">
+                <select id="subject" class="form__input form__input--select" name="subject">
+                  <option value="">選択して下さい</option>
+                  <option value="お仕事のご相談">お仕事のご相談</option>
+                  <option value="採用に関して">採用に関して</option>
+                  <option value="その他のお問い合わせ">その他のお問い合わせ</option>
+                </select>
+              </dd>
+              <dt class="form__label-outer">
+                <label class="form__label" for="name">お名前</label>
+                <span class="label">必須</span>
+              </dt>
+              <dd class="form__input-outer">
+                <input id="name" class="form__input" type="text" name="name" placeholder="例）山田太郎" required> 
+              </dd>
+              <dt class="form__label-outer">
+                <label class="form__label" for="company">社名 / 所属</label>
+              </dt>
+              <dd class="form__input-outer">
+                <input id="company" class="form__input" type="text" name="company" placeholder="例）カフェローレライ"> 
+              </dd>
+              <dt class="form__label-outer">
+                <label class="form__label" for="post">郵便番号</label>
+              </dt>
+              <dd class="form__input-outer">
+                <input id="post" class="form__input" type="text" name="post" placeholder="例）372-0082"> 
+              </dd>
+              <dt class="form__label-outer">
+                <label class="form__label" for="address">住所</label>
+              </dt>
+              <dd class="form__input-outer">
+                <input id="address" class="form__input" type="text" name="address" placeholder="例）群馬県伊勢崎市宮子町1234-5"> 
+              </dd>
+              <dt class="form__label-outer">
+                <label class="form__label" for="tel">電話番号</label>
+              </dt>
+              <dd class="form__input-outer">
+                <input id="tel" class="form__input" type="tel" name="tel" placeholder="例）090-1234-5678"> 
+              </dd>
+              <dt class="form__label-outer">
+                <label class="form__label" for="email">メールアドレス</label>
+                <span class="label">必須</span>
+              </dt>
+              <dd class="form__input-outer">
+                <input id="email" class="form__input" type="email" name="email" placeholder="例）sample@gmail.com" required> 
+              </dd>
+              <dt class="form__label-outer">
+                <label class="form__label" for="content">お問い合わせ内容</label>
+                <span class="label">必須</span>
+              </dt>
+              <dd class="form__input-outer">
+                <textarea id="content" class="form__input form__input--area" name="content" placeholder="お問い合わせ内容を入力して下さい" required></textarea>
+              </dd>
+            </dl>
+            <div class="form__send">
+              <p class="form__agree">
+                <input id="agree" class="form__agree-input" type="checkbox" name="agree" required>
+                <span class="form__agree-checkbox">
+                  <span class="form__agree-check"></span>
+                </span>
+                <label class="form__agree-label" for="agree"><a class="form__agree-link" href="../privacy/index.html" target="_blank">プライバシーポリシー</a>に同意する</label>
+              </p>
+              <p class="form__submit">
+                <button class="form__submit-button label label--big" type="submit">確認</button>
+              </p>  
+            </div>
+            <!-- /.form__send -->
+          </form>
+  
+          <div class="step contact__step">
+            <ol class="step__list">
+              <li class="step__item current">
+                1) 入力
+              </li>
+              <li class="step__item">
+                2) 確認 
+              </li>
+              <li class="step__item">
+                3) 送信
+              </li>
+            </ol>
+          </div>
+          <!-- /.step -->  
+        </div>
+        <!-- /.contact__container -->
       </div>
       <!-- /.contact-body -->
-
     </section>
     <!-- /.contact -->
 

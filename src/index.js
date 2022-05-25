@@ -6,4 +6,5 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 import "./style.scss";
 
-console.log('hello');
+import "./js/menu";
+
