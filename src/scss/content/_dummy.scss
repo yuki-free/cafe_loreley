@@ -1,0 +1,19 @@
+@use "../var" as *;
+
+// ===========================================
+//                  dummy
+// ===========================================
+
+.cover-dummy {
+  @include mediaquery(pc) {
+    height: 100vh;
+    min-height: 45vw;
+  }
+}
+
+.footer-dummy {
+  @include mediaquery(pc) {
+    height: 100vh;
+    min-height: 45vw;
+  }
+}

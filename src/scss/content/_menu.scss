@@ -8,13 +8,23 @@
   @include mediaquery(pc) {
     overflow-x: scroll;
     width: 100vw;
+    position: relative;
   }
 
   &__sub-title {
     text-align: center;
   }
 
+  &__horizontal-scroll-container {
+    @include mediaquery(pc) {
+      position: absolute;
+      top: 0;
+      left: 100%;
+    }
+  }
+
   &__content {
+    background: $base-color;
     @include mediaquery(pc) {
       display: flex;
       width: max-content;
@@ -46,6 +56,10 @@
 
   @include mediaquery(pc) {
     min-height: 45vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -2;
   }
 }
 

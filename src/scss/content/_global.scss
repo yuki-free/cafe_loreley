@@ -1,10 +1,14 @@
 @use "../var" as *;
 
+.content {
+  // background: $base-color;
+}
+
 // ===========================================
 //                  layout
 // ===========================================
 
-.content {
+.container {
   @include sp-padding;
 
   @include mediaquery(pc) {
@@ -105,15 +109,15 @@
 }
 
 .hamburger-button {
-  width: 48px;
-  height: 48px;
-  padding: 18px 6px;
+  width: 38px;
+  height: 42px;
+  padding: 14px 0;
   cursor: pointer;
+  overflow: hidden;
 
   &__inner {
     height: 100%;
     position: relative;
-    overflow: hidden;
   }
 
   &__bar {
@@ -126,6 +130,7 @@
     &--top {
       top: 0;
       left: -50%;
+      transform-origin: middle left ;
     }
 
     &--middle {
@@ -137,6 +142,7 @@
     &--bottom {
       bottom: 0;
       right: -50%;
+      transform-origin: middle right;
     }
   }
 
@@ -155,6 +161,8 @@
   top: 0;
   left: 0;
   z-index: 10;
+  clip-path: inset(100% 0 0 0);
+  opacity: 0;
   
   @include mediaquery(pc) {
     display: flex;
@@ -187,15 +195,40 @@
 
   &__item {
     text-align: center;
+    overflow: hidden;
   }
 
   &__link {
-    padding: .5em 0;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
 
     @include mediaquery(pc) {
       padding: 0;
     }
 
+    > span {
+      display: inline-block;
+
+      span:first-of-type {
+        position: relative;
+      }
+
+      span:nth-of-type(2) {
+        position: absolute;
+        top: 100%;
+        left: 0;
+      }
+    }
+  }
+
+  &__link-bar {
+    width: 100%;
+    height: 1px;
+    background: $base-color-alpha;
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 
   &__second-list {
@@ -279,11 +312,13 @@
   @include mediaquery(pc) {
     min-height: 45vw;
     @include pc-padding;
-
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -2;  
   }
 
   &__inner {
-
     @include mediaquery(pc) {
       width: 100%;
       display: flex;

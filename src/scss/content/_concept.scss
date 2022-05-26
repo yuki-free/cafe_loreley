@@ -5,7 +5,13 @@
 // ===========================================
 
 .concept {
+  background: $base-color;
   overflow-x: hidden;
+  padding-top: 10vw;
+
+  @include mediaquery(pc) {
+    padding-top: 5vw;
+  }
 
   &__title {
     margin-bottom: 3vw;
@@ -25,29 +31,22 @@
 // ===========================================
 
 .intro {
-  padding-top: min(calc(50 / 375 * 100vw));
-
   &__text {
     text-align: center;
+    position: relative;
+    z-index: 1;
   }
 
   &__catch-copy-area {
-    height: 12em;
     width: 100%;
-    position: relative;
-
-    @include mediaquery(pc) {
-      height: 18em;
-    }
   }
 
   &__catch-copy-container {
     display: flex;
     width: max-content;
-    position: absolute;
+    position: relative;
     top: -2em;
     left: 0;
-    z-index: -1;
 
     @include mediaquery(pc) {
       top: -4.5em;
@@ -82,7 +81,8 @@
 
   &__body {
     padding-bottom: calc(25 / 375 * 100vw);
-
+    position: relative;
+    z-index: 1;
       
     }
     @include mediaquery(pc) {
@@ -115,7 +115,6 @@
 
     @include mediaquery(pc) {
       position: absolute;
-      z-index: -1;
     }
 
     &--big {

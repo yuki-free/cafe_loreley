@@ -1,0 +1,32 @@
+@use "../var" as *;
+
+// ===========================================
+//                  catch
+// ===========================================
+
+.catch-copy {
+  @include sp-padding;
+  padding: {
+    top: 65vh;
+    bottom: 10vw;
+  }
+
+  @include mediaquery(pc) {
+    @include pc-padding;
+    padding: {
+      top: 50vh;
+      bottom: 5vw;
+    }
+  }
+
+  &__main {
+    font-size: 6em;
+    color: $base-color;
+    line-height: 1.2;
+  
+    @include mediaquery(pc) {
+      font-size: 11em;
+      line-height: 1;
+    }  
+  }
+}
