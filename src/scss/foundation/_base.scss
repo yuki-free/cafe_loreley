@@ -3,7 +3,8 @@
 body {
   font-family: 'Cormorant Infant', 'Yu Mincho','YuMincho', serif;
   width: 100%;
-  color: #586166;
+  color: $base-font-color;
+  background: $base-color;
   font-size: min(calc(12 / 375 * 100vw), 20px);
   line-height: 1;
   overflow-x: hidden;

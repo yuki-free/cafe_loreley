@@ -1,9 +1,5 @@
 @use "../var" as *;
 
-.content {
-  // background: $base-color;
-}
-
 // ===========================================
 //                  layout
 // ===========================================
@@ -315,7 +311,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: -2;  
+    z-index: 0;
   }
 
   &__inner {
@@ -397,6 +393,13 @@
 
   &__second-link {
     padding: .5em 0;
+  }
+}
+
+.footer-dummy {
+  @include mediaquery(pc) {
+    height: 100vh;
+    min-height: 45vw;
   }
 }
 

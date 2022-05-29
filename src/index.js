@@ -6,8 +6,8 @@
 
 import "./style.scss";
 
-import "./js/scroll";
+import "./js/smooth_scroll";
+import "./js/scroll_trigger";
 import "./js/menu";
 import "./js/hover";
-
-
+import "./js/resize";

@@ -5,29 +5,31 @@
 // ===========================================
 
 .menu {
-  @include mediaquery(pc) {
-    overflow-x: scroll;
-    width: 100vw;
-    position: relative;
-  }
-
   &__sub-title {
     text-align: center;
   }
 
-  &__horizontal-scroll-container {
+  &__cover {
+    background: url(img/menu-top.jpg) center/cover no-repeat;
+  }
+
+  &__margin {
     @include mediaquery(pc) {
-      position: absolute;
-      top: 0;
-      left: 100%;
+      height: 20vw;
     }
   }
 
   &__content {
+    width: 100vw;
     background: $base-color;
+    
     @include mediaquery(pc) {
       display: flex;
       width: max-content;
+      position: fixed;
+      top: 0;
+      left: 100%;
+      z-index: 1;
     }
   }
 
@@ -36,6 +38,28 @@
       display: flex;
       width: max-content;
     }
+  }
+
+  &__outro {
+    width: 100vw;
+    height: 100vh;
+    min-height: 125vw;
+    background: url(img/menu__outro.jpg) center/cover no-repeat;
+
+    @include mediaquery(pc) {
+      min-height: 45vw;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+  }
+}
+
+.menu-outro-dummy {
+  @include mediaquery(pc) {
+    height: 100vh;
+    min-height: 45vw;
   }
 }
 
@@ -51,7 +75,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url(img/menu-top.jpg) center/cover no-repeat;
   color: $base-color;
 
   @include mediaquery(pc) {
@@ -59,7 +82,14 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: -2;
+    z-index: 0;
+  }
+}
+
+.cover-dummy {
+  @include mediaquery(pc) {
+    height: 100vh;
+    min-height: 45vw;
   }
 }
 

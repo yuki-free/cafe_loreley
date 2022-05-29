@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "script": "webpack",
     "start": "webpack serve",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "build": "webpack --mode production"
   },
   "license": "ISC",
   "dependencies": {
