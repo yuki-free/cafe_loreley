@@ -149,8 +149,9 @@ window.addEventListener('DOMContentLoaded', () => {
   if (window.innerWidth <= 1024) {
     gsap.set('')
   }
-  const newsInvert = new ScrollInvert('.content', '.shop');
-  const shopInvert = new ScrollInvert('.content', '.shop');
+  const newsInvert = new ScrollInvert('.news', '.shop');
+  const shopInvert = new ScrollInvert('.shop', '.shop');
+  const shopInvert2 = new ScrollInvert('.shop__bg', '.shop');
 
 });
 

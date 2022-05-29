@@ -7,7 +7,7 @@
 .news {
   width: 100vw;
   padding-bottom: 10vw;
-  // background: $base-color;
+  background: $base-color;
 
   @include mediaquery(pc) {
     padding: 10vw 10vw 10vw;
