@@ -5,7 +5,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 window.addEventListener('DOMContentLoaded', () => {
 
-  const scrollDuration = 600;
+  const scrollDuration = 700;
 
   let scrollTop = window.scrollY;
   let scrollMiddle = scrollTop + window.innerHeight / 2;
@@ -194,12 +194,15 @@ window.addEventListener('DOMContentLoaded', () => {
       this.triggerPosition = this.trigger.getBoundingClientRect().left;
       this.scrollTrigger = window.innerWidth / 2;
 
+      setTimeout( () => {
+        this.invert();
+      }, scrollDuration);
+      
       window.addEventListener('resize', () => {
         this.refresh();
       });
 
       window.addEventListener('scroll', () => {
-        this.triggerPosition = this.trigger.getBoundingClientRect().left;
         this.invert();
       });
     }
@@ -232,6 +235,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     invert() {
+      this.triggerPosition = this.trigger.getBoundingClientRect().left;
       if (this.scrollTrigger < this.triggerPosition) {
         gsap.to(this.el, {
           color: '#dadada',
@@ -276,10 +280,11 @@ window.addEventListener('DOMContentLoaded', () => {
       for (let i =0; i < this.trigger.length; i++) {
         gsap.from(this.trigger[i].querySelectorAll(this.title), {
           opacity: 0,
-          filter: 'blur(5px)',
+          filter: 'blur(1em)',
           ease: 'power3.out',
+          duration: 1,
           stagger: {
-            amount: .4,
+            amount: .6,
             from: 'random'
           },
           scrollTrigger: {
@@ -295,9 +300,93 @@ window.addEventListener('DOMContentLoaded', () => {
 
   class JsArticle3 extends JsTitle3 {
     constructor(trigger, title, text) {
-      
+      super(trigger, title);
+      this.text = text;
+
+      this.textAnimation();
+    }
+    textAnimation() {
+      for (let i =0; i < this.trigger.length; i++) {
+        gsap.from(this.trigger[i].querySelectorAll(this.text), {
+          opacity: 0,
+          y: '3em',
+          delay: .6,
+          duration: 1,
+          scrollTrigger: {
+            trigger: this.trigger[i],
+            start: 'top center'
+          }
+        });
+      }
     }
   }
+
+  const jsArticle3 = new JsArticle3('.js-article3', '.js-article3__title span', '.js-article3__text');
+
+  class JsArticle3Horizontal {
+    constructor(trigger, title, text) {
+      this.trigger = document.querySelectorAll(trigger);
+      this.triggerPosition = [];
+      this.title = title;
+      this.text = text;
+
+      this.set();
+
+      window.addEventListener('scroll', () => {
+        this.animation();        
+      });
+
+      window.addEventListener('resize', () => {
+        setTimeout( () => {
+          this.animation();
+        }, scrollDuration);
+      });
+    }
+
+    set() {
+      gsap.set(this.title, {
+        opacity: 0,
+        filter: 'blur(1em)'
+      });
+
+      gsap.set(this.text, {
+        opacity: 0,
+        y: '3em'
+      });
+    }
+
+    animation() {      
+      for (let i = 0; i < this.trigger.length; i++) {
+        this.triggerPosition[i] = this.trigger[i].getBoundingClientRect().left;
+        if (window.innerWidth * .75 > this.triggerPosition[i]) {
+          gsap.to(this.trigger[i].querySelectorAll(this.title), {
+            opacity: 1,
+            filter: 'blur(0em)',
+            ease: 'power3.out',
+            duration: 1,
+            stagger: {
+              amount: .6,
+              from: 'random'
+            }
+          });  
+
+          gsap.to(this.trigger[i].querySelectorAll(this.text), {
+            opacity: 1,
+            y: 0,
+            delay: .6,
+            duration: 1
+          });  
+        }  
+      }
+    }
+  }
+
+  if (window.innerWidth <= 1024) {
+    const jsArticle3Horizontal = new JsArticle3('.js-article3--horizontal', '.js-article3__title--horizontal span', '.js-article3__text--horizontal');
+  } else {
+    const jsArticle3Horizontal = new JsArticle3Horizontal('.js-article3--horizontal', '.js-article3__title--horizontal span', '.js-article3__text--horizontal');
+  }
+
   class JsTitle2 {
     constructor(trigger, main, sub) {
       this.trigger = document.querySelectorAll(trigger);

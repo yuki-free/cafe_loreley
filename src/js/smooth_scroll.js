@@ -183,7 +183,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  if (window.innerWidth > 1024) {
+  if (window.innerWidth >= 1024) {
     const horizontalScroll = new HorizontalScroll('.horizontal-scroll');
     const ineatiaScroll = new InertiaScroll('.scroll-container');
   }
