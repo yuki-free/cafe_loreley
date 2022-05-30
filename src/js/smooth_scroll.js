@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
       window.addEventListener('resize', () => {
         this.refresh();
-      })
+      });
 
       this.createDummy();
 
@@ -52,15 +52,15 @@ window.addEventListener('DOMContentLoaded', () => {
         setTimeout( () => {
           this.dummyOffset[i] = this.dummy[i].getBoundingClientRect().top + window.scrollY;
           if (window.scrollY + window.innerHeight > this.dummyOffset[i] && window.scrollY < this.dummyOffset[i] + this.moveX[i]) {
-            gsap.to(this.el[i], {
+            gsap.set(this.el[i], {
               x: this.dummyOffset[i] - (window.scrollY + window.innerHeight)
             });
           } else if (window.scrollY + window.innerHeight <= this.dummyOffset[i]) {
-            gsap.to(this.el[i], {
+            gsap.set(this.el[i], {
               x: 0
             });
           } else if (window.scrollY >= this.dummyOffset[i] + this.moveX[i]) {
-            gsap.to(this.el[i], {
+            gsap.set(this.el[i], {
               x: -(this.moveX[i] + window.innerHeight)
             });
           }  
@@ -106,6 +106,7 @@ window.addEventListener('DOMContentLoaded', () => {
       this.positionSet(this.el);
       this.positionSetRefresh(this.el);
       this.move(this.el);
+      this.moveRefresh(this.el);
     }
 
     createDummy(el) {
@@ -168,6 +169,14 @@ window.addEventListener('DOMContentLoaded', () => {
     move(el) {
       window.addEventListener('scroll', () => {
         gsap.to(el, {
+          y: -window.scrollY
+        });
+      });
+    }
+
+    moveRefresh(el) {
+      window.addEventListener('resize', () => {
+        gsap.set(el, {
           y: -window.scrollY
         });
       });

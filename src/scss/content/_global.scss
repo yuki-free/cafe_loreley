@@ -30,10 +30,23 @@
 //                  heading
 // ===========================================
 
-.heading2 {  
+.heading2 {
+
+  &__main {
+    overflow: hidden;
+
+    span {
+      display: inline-block;
+    }
+  }
+
   &__sub {
     font-size: .8em;
     line-height: 1;
+
+    span {
+      display: inline-block;
+    }
   }
 }
 
