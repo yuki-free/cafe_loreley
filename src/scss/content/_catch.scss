@@ -5,17 +5,19 @@
 // ===========================================
 
 .catch-copy {
+  width: 100vw;
+
   @include sp-padding;
   padding: {
     top: 65vh;
-    bottom: 10vw;
+    bottom: 20vw;
   }
 
   @include mediaquery(pc) {
     @include pc-padding;
     padding: {
       top: 50vh;
-      bottom: 5vw;
+      bottom: 10vw;
     }
   }
 
