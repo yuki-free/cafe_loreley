@@ -7,19 +7,24 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const scrollDuration = 700;
 
+  let windowWidth = window.innerWidth;
+  let windowHeight = window.innerHeight;
+
   let scrollTop = window.scrollY;
-  let scrollMiddle = scrollTop + window.innerHeight / 2;
-  let scrollBottom = scrollTop + window.innerHeight;
+  let scrollMiddle = scrollTop + windowHeight / 2;
+  let scrollBottom = scrollTop + windowHeight;
+
+  window.addEventListener('resize', () => {
+    windowWidth = window.innerWidth;
+    windowHeight = window.innerHeight;  
+    scrollMiddle = scrollTop + windowHeight / 2;
+    scrollBottom = scrollTop + windowHeight;
+  });
 
   window.addEventListener('scroll', () => {
     scrollTop = window.scrollY;
-    scrollMiddle = scrollTop + window.innerHeight / 2;
-    scrollBottom = scrollTop + window.innerHeight;
-  });
-
-  window.addEventListener('resize', () => {
-    scrollMiddle = scrollTop + window.innerHeight / 2;
-    scrollBottom = scrollTop + window.innerHeight;
+    scrollMiddle = scrollTop + windowHeight / 2;
+    scrollBottom = scrollTop + windowHeight;
   });
 
   setTimeout( () => {
@@ -53,30 +58,38 @@ window.addEventListener('DOMContentLoaded', () => {
   ScrollTrigger.batch('.concept', {
     onEnter: () => gsap.to('.hero', {
       opacity: 0,
-      duration: .3
+      duration: .3,
+      ease: 'power3.out',
+      overwrite: true
     }),
     onLeaveBack: () => gsap.to('.hero', {
       opacity: 1,
       duration: .3,
-      delay: .6
+      delay: .8,
+      ease: 'power3.in',
     }),
-    start: `top center`,
+    start: `top center`
   });
 
   ScrollTrigger.batch('.concept', {
     onEnter: batch => gsap.to(batch, {
       opacity: 1,
-      delay: .3
+      delay: .6,
+      duration: .8,
+      ease: 'none',
     }),
     onLeaveBack: batch => gsap.to(batch, {
-      opacity: 0
+      opacity: 0,
+      duration: .8,
+      ease: 'none',
+      overwrite: true
     }),
     start: `top center`,
   });
 
   // ----------------- menu -------------------
 
-  if (window.innerWidth > 1024) {
+  if (windowWidth > 1024) {
     gsap.set('.menu__cover', {
       opacity: 0
     });
@@ -94,8 +107,9 @@ window.addEventListener('DOMContentLoaded', () => {
       onEnterBack: () => gsap.set('.menu__cover', {
         opacity: 1
       }),
-      start: `top-=${window.innerHeight / 2} bottom`,
-      end: `bottom+=${window.innerWidth} top`,
+      start: 'top 150%',
+      endTrigger: '.menu__margin--cover .position-dummy',
+      end: 'top 50%'
     });
 
     gsap.set('.menu__cover', {
@@ -114,7 +128,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     gsap.set('.menu__title', {
-      yPercent: 150
+      yPercent: 100
     });
 
     gsap.to('.menu__title', {
@@ -134,18 +148,20 @@ window.addEventListener('DOMContentLoaded', () => {
       scrollTrigger: {
         trigger: '.menu__margin--cover',
         start: 'bottom bottom',
-        end: `+=${window.innerWidth}`,
+        endTrigger: '.menu__margin--cover .position-dummy',
+        end: 'top bottom',
         scrub: .6
       }
     });
 
     gsap.to('.menu__title', {
-      xPercent: -100,
+      xPercent: -75,
       ease: 'none',
       scrollTrigger: {
         trigger: '.menu__margin--cover',
         start: 'bottom bottom',
-        end: `+=${window.innerWidth}`,
+        endTrigger: '.menu__margin--cover .position-dummy',
+        end: 'top bottom',
         scrub: .6
       }
     });
@@ -154,7 +170,7 @@ window.addEventListener('DOMContentLoaded', () => {
       opacity: 0
     });
   
-    ScrollTrigger.batch('.menu-outro-dummy', {
+    ScrollTrigger.batch('.menu__margin--outro .position-dummy', {
       onEnter: () => gsap.set('.menu__outro', {
         opacity: 1
       }),
@@ -167,8 +183,9 @@ window.addEventListener('DOMContentLoaded', () => {
       onEnterBack: () => gsap.set('.menu__outro', {
         opacity: 1
       }),
-      start: `top-=${window.innerWidth} bottom`,
-      end: `bottom+=${window.innerHeight * .7} top`
+      start: 'top 50%',
+      endTrigger: '.menu-outro-dummy',
+      end: 'bottom -50%'
     });
 
     gsap.set('.menu__outro', {
@@ -179,9 +196,10 @@ window.addEventListener('DOMContentLoaded', () => {
       xPercent: 0,
       ease: 'none',
       scrollTrigger: {
-        trigger: '.menu-outro-dummy',
-        start: `top-=${window.innerWidth} top`,
-        end: `+=${window.innerWidth}`,
+        trigger: '.menu__margin--outro .position-dummy',
+        start: `top top`,
+        endTrigger: '.menu__margin--outro',
+        end: `top top`,
         scrub: .6
       }
     });
@@ -190,9 +208,9 @@ window.addEventListener('DOMContentLoaded', () => {
       yPercent: -50,
       ease: 'none',
       scrollTrigger: {
-        trigger: '.menu__margin--outro',
-        start: 'bottom bottom',
-        end: `+=${window.innerHeight}`,
+        trigger: '.menu-outro-dummy',
+        start: 'top top',
+        end: 'bottom top',
         scrub: .6
       }
     });
@@ -213,7 +231,7 @@ window.addEventListener('DOMContentLoaded', () => {
         opacity: 0,
         visibility: 'hidden'
       }),
-      start: `top-=${window.innerHeight / 2} bottom`
+      start: `-50% bottom`
     });
 
     gsap.fromTo('.footer', {
@@ -280,7 +298,7 @@ window.addEventListener('DOMContentLoaded', () => {
       this.el = document.querySelector(el);
       this.trigger = document.querySelector(trigger);
       this.triggerPosition = this.trigger.getBoundingClientRect().left;
-      this.scrollTrigger = window.innerWidth / 2;
+      this.scrollTrigger = windowWidth / 2;
 
       setTimeout( () => {
         this.invert();
@@ -303,7 +321,7 @@ window.addEventListener('DOMContentLoaded', () => {
           timeoutId = 0 ;
       
           this.triggerPosition = trigger.getBoundingClientRect().left;      
-          this.scrollTrigger = window.innerWidth / 2;
+          this.scrollTrigger = windowWidth / 2;
 
           if (this.scrollTrigger < this.triggerPosition) {
             gsap.to(this.el, {
@@ -342,7 +360,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const conceptInvert = new ScrollInvert('.concept', '.concept__content-2');
 
-  if (window.innerWidth <= 1024) {
+  if (windowWidth <= 1024) {
     const menuInvert = new ScrollInvertReverse('.menu__content', '.menu__item--food');
   } else if (document.querySelectorAll('.menu__content').length > 0) {
     const menuInvertPc = new HorizontalScrollInvert('.menu__content', '.menu__item--food');
@@ -421,6 +439,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
       this.set();
 
+      setTimeout( () => {
+        this.animation();        
+      }, scrollDuration);
+
       window.addEventListener('scroll', () => {
         this.animation();        
       });
@@ -447,7 +469,7 @@ window.addEventListener('DOMContentLoaded', () => {
     animation() {      
       for (let i = 0; i < this.trigger.length; i++) {
         this.triggerPosition[i] = this.trigger[i].getBoundingClientRect().left;
-        if (window.innerWidth * .75 > this.triggerPosition[i]) {
+        if (windowWidth * .75 > this.triggerPosition[i]) {
           gsap.to(this.trigger[i].querySelectorAll(this.title), {
             opacity: 1,
             filter: 'blur(0em)',
@@ -470,7 +492,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  if (window.innerWidth <= 1024) {
+  if (windowWidth <= 1024) {
     const jsArticle3Horizontal = new JsArticle3('.js-article3--horizontal', '.js-article3__title--horizontal span', '.js-article3__text--horizontal');
   } else {
     const jsArticle3Horizontal = new JsArticle3Horizontal('.js-article3--horizontal', '.js-article3__title--horizontal span', '.js-article3__text--horizontal');
@@ -571,18 +593,58 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  if (window.innerWidth <= 1024) {
+  if (windowWidth <= 1024) {
     const jsTitle2Horizontal = new JsTitle2('.js-title2--horizontal', '.js-title2__main--horizontal span', '.js-title2__sub--horizontal span');
   } else {
     const jsTitle2Horizontal = new JsTitle2Horizontal('.js-title2--horizontal', '.js-title2__main--horizontal span', '.js-title2__sub--horizontal span', '.cover-dummy');
   }
 
-  class JsArticle2 extends JsTitle2 {
+  class JsArticle2 {
     constructor(trigger, main, sub, text) {
-      super(trigger, main, sub);
+      this.trigger = document.querySelectorAll(trigger);
+      this.main = main;
+      this.sub = sub;
       this.text = text;
 
+      this.mainAnimation();
+      this.subAnimation();
       this.textAnimation();
+    }
+
+    mainAnimation() {
+      for (let i =0; i < this.trigger.length; i++) {
+        gsap.from(this.trigger[i].querySelectorAll(this.main), {
+          yPercent: 100,
+          scaleY: 1.2,
+          delay: .6,
+          stagger: {
+            amount: .6
+          },
+          scrollTrigger: {
+            trigger: this.trigger[i],
+            start: 'top center'
+          }
+        });
+      }
+    }
+
+    subAnimation() {
+      for (let i =0; i < this.trigger.length; i++) {
+        gsap.from(this.trigger[i].querySelectorAll(this.sub), {
+          opacity: 0,
+          filter: 'blur(1em)',
+          delay: 1.2,
+          ease: 'power3.out',
+          stagger: {
+            amount: .4,
+            from: 'random'
+          },
+          scrollTrigger: {
+            trigger: this.trigger[i],
+            start: 'top center'
+          }
+        });  
+      }
     }
 
     textAnimation() {
@@ -590,7 +652,7 @@ window.addEventListener('DOMContentLoaded', () => {
         gsap.from(this.trigger[i].querySelectorAll(this.text), {
           opacity: 0,
           y: '3em',
-          delay: 1,
+          delay: 1.6,
           duration: 1,
           scrollTrigger: {
             trigger: this.trigger[i],
@@ -641,6 +703,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
       this.set();
 
+      setTimeout( () => {
+        this.fadeIn();        
+      }, scrollDuration);
+
       window.addEventListener('scroll', () => {
         this.fadeIn();        
       });
@@ -663,23 +729,27 @@ window.addEventListener('DOMContentLoaded', () => {
 
     fadeIn() {      
       for (let i = 0; i < this.el.length; i++) {
-        this.parentOffset[i] = this.parent[i].getBoundingClientRect().left;
-        if (window.innerWidth * .75 > this.parentOffset[i]) {
-          gsap.to(this.el[i], {
-            opacity: 1,
-            scale: 1,
-            duration: 1
-          });
+        if (this.el[i].classList.contains('is-show') !== true) {
+          this.parentOffset[i] = this.parent[i].getBoundingClientRect().left;
+          if (windowWidth * .75 > this.parentOffset[i]) {
+            gsap.to(this.el[i], {
+              opacity: 1,
+              scale: 1,
+              duration: 1
+            });
+
+            this.el[i].classList.add('is-show');
+          }
         }
       }
     }
   }
 
-  if (window.innerWidth <= 1024) {
+  if (windowWidth <= 1024) {
     const fadeIn = new FadeIn('.js-fade-in');
   }
 
-  if (window.innerWidth <= 1024) {
+  if (windowWidth <= 1024) {
     const fadeInHorizontal = new FadeIn('.js-fade-in--horizontal');
   } else {
     const fodeInHorizontal = new FadeInHorizontal('.js-fade-in--horizontal');
@@ -691,82 +761,170 @@ window.addEventListener('DOMContentLoaded', () => {
       this.image = image;
       this.overlay = overlay;
 
-      this.set();
-
       this.slideIn();
-    }
-
-    set() {
-      for (let i = 0; i < this.el.length; i++) {
-        gsap.set(this.el[i].querySelector(this.image), {
-          opacity: 0
-        });  
-      }
     }
 
     slideIn() {
       for (let i = 0; i < this.el.length; i++) {
-        gsap.to(this.el[i].querySelector(this.overlay), {
-          'clip-path': 'inset(0 0% 0 0%)',
-          ease: 'power3.out',
-          duration: .6,
+        gsap.from(this.el[i].querySelector(this.image), {
+          opacity: 0,
+          duration: 0.1,
+          delay: .4,
           scrollTrigger: {
             trigger: this.el[i],
             start: 'top center'
           }
         });
 
-        gsap.set(this.el[i].querySelector(this.image), {
-          opacity: 1,
-          delay: .6,
-          scrollTrigger: {
-            trigger: this.el[i],
-            start: 'top center'
-          }
-        });
-
-        gsap.to(this.el[i].querySelector(this.overlay), {
-          'clip-path': 'inset(0 0% 0 100%)',
-          ease: 'power3.out',
-          duration: .6,
+        gsap.fromTo(this.el[i].querySelector(this.overlay), {
+          'clip-path': 'inset(0 0 0 0%)',
+        }, {
+          'clip-path': 'inset(0 0 0 100%)',
+          ease: 'expo.out',
+          duration: .4,
           delay: .8,
           scrollTrigger: {
             trigger: this.el[i],
             start: 'top center'
           }
         });
-      }
-    }
-  }
 
-  const slideIn = new SlideIn('.js-slide-in', '.js-slide-in__image', '.js-slide-in__overlay');
-
-  class RotateInHorizontal {
-    constructor(el) {
-      this.el = document.querySelectorAll(el);
-
-      this.fadeIn();
-    }
-
-    fadeIn() {
-      for (let i = 0; i < this.el.length; i++) {
-        gsap.from(this.el[i], {
-          rotationY: 90,
-          ease: 'elastic.out(1, 0.5)',
-          duration: .8,
+        gsap.fromTo(this.el[i].querySelector(this.overlay), {
+          'clip-path': 'inset(0 100% 0 0)',      
+        }, {
+          'clip-path': 'inset(0 0% 0 0)',
+          ease: 'expo.in',
+          duration: .4,
           scrollTrigger: {
             trigger: this.el[i],
-            start: 'top center',
-            markers: true
+            start: 'top center'
           }
         });
       }
     }
   }
 
-  if (window.innerWidth <= 1024) {
-    const rotateInHorizontal = new RotateInHorizontal('.js-rotate-in--horizontal');
+  if (windowWidth <= 1024) {
+    const slideInSp = new SlideIn('.js-slide-in--sp', '.js-slide-in__image--sp', '.js-slide-in__overlay--sp');
   }
+
+  const slideIn = new SlideIn('.js-slide-in', '.js-slide-in__image', '.js-slide-in__overlay');
+
+  class SlideInHorizontal {
+    constructor(el, image, overlay) {
+      this.el = document.querySelectorAll(el);
+      this.image = image;
+      this.overlay = overlay;
+      this.elOffset = [];
+
+      this.set();
+
+      setTimeout( () => {
+        this.slideIn();        
+      }, scrollDuration);
+
+      window.addEventListener('scroll', () => {
+        this.slideIn();        
+      });
+
+      window.addEventListener('resize', () => {
+        setTimeout( () => {
+          this.slideIn();
+        }, scrollDuration);
+      });
+    }
+
+    set() {
+      for (let i = 0; i < this.el.length; i++) {
+        gsap.set(this.el[i].querySelector(this.overlay), {
+          'clip-path': 'inset(0 100% 0 0)'      
+        });
+
+        gsap.set(this.el[i].querySelector(this.image), {
+          opacity: 0
+        });
+      }
+    }
+
+    slideIn() {
+      for (let i = 0; i < this.el.length; i++) {
+        if (this.el[i].classList.contains('is-show') !== true) {
+          this.elOffset[i] = this.el[i].getBoundingClientRect().left;
+          if (windowWidth * .75 > this.elOffset[i]) {
+            gsap.to(this.el[i].querySelector(this.image), {
+              opacity: 1,
+              duration: 0.1,
+              delay: .4,
+              scrollTrigger: {
+                trigger: this.el[i],
+                start: 'top center'
+              }
+            });
+    
+            gsap.fromTo(this.el[i].querySelector(this.overlay), {
+              'clip-path': 'inset(0 0 0 0%)',
+            }, {
+              'clip-path': 'inset(0 0 0 100%)',
+              ease: 'expo.out',
+              duration: .4,
+              delay: .8,
+              scrollTrigger: {
+                trigger: this.el[i],
+                start: 'top center'
+              }
+            });
+    
+            gsap.fromTo(this.el[i].querySelector(this.overlay), {
+              'clip-path': 'inset(0 100% 0 0)',      
+            }, {
+              'clip-path': 'inset(0 0% 0 0)',
+              ease: 'expo.in',
+              duration: .4,
+              scrollTrigger: {
+                trigger: this.el[i],
+                start: 'top center'
+              }
+            });
+
+            this.el[i].classList.add('is-show');
+          } 
+        }
+      }
+    }
+  }
+
+  if (windowWidth <= 1024) {
+    const slideInHorizontal = new SlideIn('.js-slide-in--horizontal', '.js-slide-in__image--horizontal', '.js-slide-in__overlay--horizontal');
+  } else {
+    const slideInHorizontal = new SlideInHorizontal('.js-slide-in--horizontal', '.js-slide-in__image--horizontal', '.js-slide-in__overlay--horizontal');
+  }
+
+  // class RotateInHorizontal {
+  //   constructor(el) {
+  //     this.el = document.querySelectorAll(el);
+
+  //     this.fadeIn();
+  //   }
+
+  //   fadeIn() {
+  //     for (let i = 0; i < this.el.length; i++) {
+  //       gsap.from(this.el[i], {
+  //         rotationY: 90,
+  //         ease: 'elastic.out(1, 0.5)',
+  //         duration: .8,
+  //         scrollTrigger: {
+  //           trigger: this.el[i],
+  //           start: 'top center',
+  //           markers: true
+  //         }
+  //       });
+  //     }
+  //   }
+  // }
+
+  // if (windowWidth <= 1024) {
+  //   const rotateInHorizontal = new RotateInHorizontal('.js-rotate-in--horizontal');
+  // }
 
   // ===========================================
   //                  concept
@@ -779,18 +937,20 @@ window.addEventListener('DOMContentLoaded', () => {
     ease: 'none'
   });
 
-  gsap.to('.intro__catch-copy-container', {
-    xPercent: -10,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.intro__catch-copy-container',
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: .6
-    }
-  });
+  if (windowWidth > 1024) {
+    gsap.to('.intro__catch-copy-container', {
+      xPercent: -10,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.intro__catch-copy-container',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: .6
+      }
+    });
+  }
 
-  if (window.innerWidth > 1024) {
+  if (windowWidth > 1024) {
     class ParallaxMove {
       constructor(el, move) {
         this.el = document.querySelectorAll(el);
@@ -818,7 +978,174 @@ window.addEventListener('DOMContentLoaded', () => {
     const parallaxMoveBig = new ParallaxMove('.media-multi__image-outer--big', -40);
     const parallaxMoveMedium = new ParallaxMove('.media-multi__image-outer--medium', -120);
     const parallaxMoveSmall = new ParallaxMove('.media-multi__image-outer--small', -300);
+  }
 
+  // ===========================================
+  //                  menu
+  // ===========================================
+
+  if (windowWidth > 1024) {
+    class ParallaxHorizontal {
+      constructor(el, widthPercent) {
+        this.el = document.querySelectorAll(el);
+        this.widthPercent = widthPercent;
+        this.elProperty = [];
+        this.parent = [];
+        this.parentProperty = [];
+        this.moveX = [];
+  
+        for (let i = 0; i < this.el.length; i++) {
+          this.parent[i] = this.el[i].parentNode;
+        }
+  
+        this.set();
+  
+        window.addEventListener('resize', () => {
+          this.set();
+        }, scrollDuration);
+  
+        setTimeout( () => {
+          this.move();
+        }, scrollDuration);
+  
+        window.addEventListener('scroll', () => {
+          this.move();
+        });
+  
+        window.addEventListener('resize', () => {
+          this.move();
+        }, scrollDuration);
+      }
+  
+      set() {
+        for (let i = 0; i < this.el.length; i++) {        
+          gsap.set(this.el[i], {
+            width: this.widthPercent
+          });
+  
+          this.elProperty[i] = this.el[i].getBoundingClientRect();
+          this.parentProperty[i] = this.parent[i].getBoundingClientRect();
+          this.moveX[i] = this.elProperty[i].width - this.parentProperty[i].width;
+        }
+      }
+  
+      move() {
+        for (let i = 0; i < this.el.length; i++) {
+          this.elProperty[i] = this.el[i].getBoundingClientRect();
+  
+          if (window.scrollX < this.elProperty[i].right && windowWidth > this.elProperty[i].left) {
+            gsap.to(this.el[i], {
+              x: -(this.moveX[i] * (1 - ((this.elProperty[i].width + this.elProperty[i].left) / (this.elProperty[i].width + windowWidth))))
+            });
+          }
+        }
+      }
+    }
+  
+    const parallaxHorizontal = new ParallaxHorizontal('.media-vertical__image', '130%')
+  
+    class ParallaxHorizontalMovePx {
+      constructor(el, movePx) {
+        this.el = document.querySelectorAll(el);
+        this.movePx = movePx;
+        this.elProperty = [];
+
+        setTimeout( () => {
+          this.move();
+        }, scrollDuration);
+  
+        window.addEventListener('scroll', () => {
+          this.move();
+        });
+  
+        window.addEventListener('resize', () => {
+          this.move();
+        }, scrollDuration);
+      }
+
+      move() {
+        for (let i = 0; i < this.el.length; i++) {
+          this.elProperty[i] = this.el[i].getBoundingClientRect();
+  
+          if (window.scrollX < this.elProperty[i].right && windowWidth > this.elProperty[i].left) {
+            gsap.to(this.el[i], {
+              x: -(this.movePx * (1 - ((this.elProperty[i].width + this.elProperty[i].left) / (this.elProperty[i].width + windowWidth))))
+            });
+          }
+        }
+      }
+    }
+    
+    const parallaxHorizontalMovePx = new ParallaxHorizontalMovePx('.vertical-card__image--parallax', '300');
+  }
+
+  // ===========================================
+  //                  news
+  // ===========================================
+
+  gsap.from('.stack-list__item', {
+    opacity: 0,
+    xPercent: 30,
+    ease: 'power3.out',
+    duration: 2.5,
+    stagger: .3,
+    scrollTrigger: {
+      trigger: '.stack-list',
+      start: 'top center'
+    }
+  });
+
+  // ===========================================
+  //                  shop
+  // ===========================================
+
+  if (windowWidth > 1024) {
+    class Parallax {
+      constructor(el, heightPercent) {
+        this.el = document.querySelectorAll(el);
+        this.heightPercent = heightPercent;
+        this.elProperty = [];
+        this.parent = [];
+        this.parentProperty = [];
+        this.moveY = [];
+  
+        for (let i = 0; i < this.el.length; i++) {
+          this.parent[i] = this.el[i].parentNode;
+        }
+  
+        this.set();
+        this.move();
+      }
+  
+      set() {
+        for (let i = 0; i < this.el.length; i++) {
+          gsap.set(this.el[i], {
+            height: this.heightPercent
+          });
+  
+          this.elProperty[i] = this.el[i].getBoundingClientRect();
+          this.parentProperty[i] = this.parent[i].getBoundingClientRect();
+          this.moveY[i] = -(this.elProperty[i].height - this.parentProperty[i].height);
+        }
+      }
+  
+      move() {
+        for (let i = 0; i < this.el.length; i++) {
+          gsap.to(this.el[i], {
+            y: this.moveY[i],
+            ease: 'none',
+            scrollTrigger: {
+              trigger: this.parent[i],
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: .6
+            }
+          });
+        }
+      }
+    }
+
+    const parallax = new Parallax('.js-parallax', '130%')
   }
 });
 

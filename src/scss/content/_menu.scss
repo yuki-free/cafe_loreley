@@ -12,6 +12,7 @@
   &__margin {
     @include mediaquery(pc) {
       height: 20vw;
+      position: relative;
     }
   }
 
@@ -37,12 +38,6 @@
   }
 }
 
-.menu-outro-dummy {
-  @include mediaquery(pc) {
-    height: 100vh;
-    min-height: 45vw;
-  }
-}
 
 // ===========================================
 //                  cover
@@ -80,8 +75,19 @@
 
 .cover-dummy {
   @include mediaquery(pc) {
+    position: relative;
     height: 100vh;
     min-height: 45vw;
+  }
+}
+
+.menu__margin--cover {
+  .position-dummy {
+    @include mediaquery(pc) {
+      position: absolute;
+      bottom: -100vw;
+      left: 0;
+    }
   }
 }
 
@@ -160,8 +166,6 @@
 }
 
 .vertical-card {
-  perspective: 500px;
-
   @include mediaquery(pc) {
     width: 16vw;
     margin-right: 3.5vw;
@@ -179,6 +183,8 @@
 
     &--skew {
       clip-path: polygon(0 15%, 100% 0%, 100% 85%, 0% 100%);
+      background: transparent;
+      position: relative;
 
       @include mediaquery(pc) {
         clip-path: polygon(0 7%, 100% 0%, 100% 93%, 0% 100%);
@@ -191,6 +197,21 @@
     max-width: none;
     height: 100%;
     object-fit: cover;
+
+    &--parallax {
+      @include mediaquery(pc) {
+        width: calc(100% + 300px);
+      }
+    }
+  }
+
+  &__image-overlay {
+    width: 100%;
+    height: 100%;
+    background: $main-font-color;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 
   &__body {
@@ -243,5 +264,23 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+}
+
+.menu-outro-dummy {
+  @include mediaquery(pc) {
+    height: 100vh;
+    min-height: 45vw;
+  }
+}
+
+.menu__margin--outro {
+  .position-dummy {
+    @include mediaquery(pc) {
+      height: 100%;
+      position: absolute;
+      top: -100vw;
+      left: 0;
+    }
   }
 }
