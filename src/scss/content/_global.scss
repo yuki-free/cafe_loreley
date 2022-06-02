@@ -358,13 +358,17 @@
   }
 
   &__link {
-    padding: .2em 0;
     display: inline-block;
     overflow: hidden;
     position: relative;
 
     > span {
       display: inline-block;
+
+      span {
+        padding: .2em 0;
+        display: inline-block;
+      }
 
       span:first-of-type {
         position: relative;
@@ -408,13 +412,17 @@
   }
 
   &__second-link {
-    padding: .2em 0;
     display: inline-block;
     overflow: hidden;
     position: relative;
 
     > span {
       display: inline-block;
+
+      span {
+        padding: .2em 0;
+        display: inline-block;
+      }
 
       span:first-of-type {
         position: relative;

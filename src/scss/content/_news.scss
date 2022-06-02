@@ -23,6 +23,12 @@
       align-items: flex-end;
     }
   }
+
+  &__image-list {
+    position: fixed;
+    top: 10vw;
+    left: 45vw;
+  }
 }
 
 // ===========================================
@@ -80,5 +86,22 @@
       width: 76%;
       margin-top: 0;
     }
+  }
+}
+
+// ===========================================
+//                  hover-image-list
+// ===========================================
+
+.hover-image-list {
+  width: 30vw;
+  height: 20vw;
+  opacity: 1;
+
+  &__item {
+    position: absolute;
+    top: 0;
+    left: 0;
+
   }
 }

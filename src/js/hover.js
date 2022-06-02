@@ -200,6 +200,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
       this.set();
 
+      window.addEventListener('resize', () => {
+        this.set();
+      });
+
       this.hover();
     }
 
@@ -208,21 +212,53 @@ window.addEventListener('DOMContentLoaded', () => {
         this.elProperty[i] = this.el[i].getBoundingClientRect();
         this.elCenter[i] = this.elProperty[i].width / 2;
         this.elMiddle[i] = this.elProperty[i].height / 2;
+
+        gsap.set(this.el[i].querySelector(this.image), {
+          width: '150%',
+          height: '110%',
+          xPercent: -16.66666666666667,
+          yPercent: -4.54545454545455
+        });
       }
     }
 
     hover() {
       for (let i = 0; i < this.el.length; i++) {
+        this.el[i].addEventListener('mouseenter', () => {
+          // gsap.to(this.el[i].querySelector(this.image), {
+          //   scale: 1.2,
+          // });
+        });
+
         this.el[i].addEventListener('mousemove', e => {
           const offsetX = e.offsetX;
           const offsetY = e.offsetY;
-          console.log((offsetX - this.elCenter[i]) / this.elCenter[i]);
 
           gsap.to(this.el[i], {
-            rotationY: 10 * ((offsetX - this.elCenter[i]) / this.elCenter[i]),
+            rotationY: 20 * ((offsetX - this.elCenter[i]) / this.elCenter[i]),
             rotationX: -5 * ((offsetY - this.elMiddle[i]) / this.elMiddle[i])
           });
           
+          gsap.to(this.el[i].querySelector(this.image), {
+            xPercent: 16.66666666666667 * ((offsetX - this.elCenter[i]) / this.elCenter[i]) - 16.66666666666667,
+            yPercent: 4.54545454545455 * ((offsetY - this.elMiddle[i]) / this.elMiddle[i]) - 4.54545454545455,
+          });
+        });
+
+        this.el[i].addEventListener('mouseleave', () => {
+          gsap.to(this.el[i], {
+            rotationY: 0,
+            rotationX: 0,
+            duration: .2,
+            overwrite: true
+          });
+
+          gsap.to(this.el[i].querySelector(this.image), {
+              xPercent: -16.66666666666667,
+              yPercent: -4.54545454545455,
+              duration: .2,
+            overwrite: true
+          });
         });
       }
     }

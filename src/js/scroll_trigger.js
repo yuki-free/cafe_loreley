@@ -1088,8 +1088,8 @@ window.addEventListener('DOMContentLoaded', () => {
   gsap.from('.stack-list__item', {
     opacity: 0,
     xPercent: 30,
-    ease: 'power3.out',
-    duration: 1.8,
+    ease: 'power4.out',
+    duration: 2.4,
     stagger: .3,
     scrollTrigger: {
       trigger: '.stack-list',
@@ -1161,7 +1161,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   gsap.from('.gallery__list', {
     x: '100vw',
-    duration: 2,
+    duration: 2.2,
     ease: 'power4.out',
     scrollTrigger: {
       trigger: '.gallery__list',
