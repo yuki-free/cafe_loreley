@@ -169,6 +169,7 @@
   @include mediaquery(pc) {
     width: 16vw;
     margin-right: 3.5vw;
+    perspective: 500px;
   }
 
   &__image-outer {
@@ -200,7 +201,7 @@
 
     &--parallax {
       @include mediaquery(pc) {
-        width: calc(100% + 300px);
+        width: calc(100% + 150px);
       }
     }
   }

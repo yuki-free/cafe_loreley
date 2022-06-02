@@ -6,6 +6,7 @@
 
 .news {
   width: 100vw;
+  padding-top: 10vw;
   padding-bottom: 10vw;
   background: $base-color;
 
@@ -29,6 +30,7 @@
 // ===========================================
 
 .stack-list {
+  overflow: hidden;
 
   &__item {
     position: relative;

@@ -100,7 +100,32 @@
   }
 
   &__description-link {
-    text-decoration: underline;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+
+    > span {
+      display: inline-block;
+
+      span:first-of-type {
+        position: relative;
+      }
+
+      span:nth-of-type(2) {
+        position: absolute;
+        top: 100%;
+        left: 0;
+      }
+    }
+  }
+
+  &__description-link-bar {
+    width: 100%;
+    height: 1px;
+    background: $main-font-color;
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 }
 

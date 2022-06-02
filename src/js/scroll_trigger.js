@@ -3,6 +3,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+export let galleryOffset = [];
+
 window.addEventListener('DOMContentLoaded', () => {
 
   const scrollDuration = 700;
@@ -1042,7 +1044,7 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
   
-    const parallaxHorizontal = new ParallaxHorizontal('.media-vertical__image', '130%')
+    const parallaxHorizontal = new ParallaxHorizontal('.media-vertical__image', '120%')
   
     class ParallaxHorizontalMovePx {
       constructor(el, movePx) {
@@ -1076,7 +1078,7 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
     
-    const parallaxHorizontalMovePx = new ParallaxHorizontalMovePx('.vertical-card__image--parallax', '300');
+    const parallaxHorizontalMovePx = new ParallaxHorizontalMovePx('.vertical-card__image--parallax', '150');
   }
 
   // ===========================================
@@ -1087,7 +1089,7 @@ window.addEventListener('DOMContentLoaded', () => {
     opacity: 0,
     xPercent: 30,
     ease: 'power3.out',
-    duration: 2.5,
+    duration: 1.8,
     stagger: .3,
     scrollTrigger: {
       trigger: '.stack-list',
@@ -1145,7 +1147,33 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    const parallax = new Parallax('.js-parallax', '130%')
+    const parallax = new Parallax('.js-parallax', '120%')
   }
+
+  const gallery = document.getElementsByClassName('gallery__list')[0];
+  const galleryList = gallery.getElementsByClassName('gallery__item');
+  galleryOffset = [];
+  const getGalleryOffset = () => {
+    for (let i = 0; i < galleryList.length; i++) {
+      galleryList[i].getBoundingClientRect().left;
+    }
+  }
+
+  gsap.from('.gallery__list', {
+    x: '100vw',
+    duration: 2,
+    ease: 'power4.out',
+    scrollTrigger: {
+      trigger: '.gallery__list',
+      start: 'top center'
+    },
+    onComplete: getGalleryOffset
+  });
+
+  // ===========================================
+  //                  sns
+  // ===========================================
+
+  const snsTitle = new JsTitle2('.sns__inner', '.sns__title span', '.sns__item');
 });
 
