@@ -46,6 +46,30 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   // ===========================================
+  //                  header
+  // ===========================================
+
+  let beforePosition = scrollTop;
+
+  window.addEventListener('scroll', () => {
+    const currentPosition = scrollTop;
+
+    if (beforePosition < currentPosition) {
+      gsap.to('.header', {
+        opacity: 0,
+        'pointer-events': 'none'
+      });
+    } else {
+      gsap.to('.header', {
+        opacity: 1,
+        'pointer-events': 'auto'
+      });
+    }
+
+    beforePosition = scrollTop;
+  });
+
+  // ===========================================
   //                  layer
   // ===========================================
 
@@ -1085,7 +1109,7 @@ window.addEventListener('DOMContentLoaded', () => {
   //                  news
   // ===========================================
 
-  gsap.from('.stack-list__item', {
+  gsap.from('.stack-list__item-outer', {
     opacity: 0,
     xPercent: 30,
     ease: 'power4.out',

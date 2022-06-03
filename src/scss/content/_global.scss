@@ -86,6 +86,10 @@
 .logo {
   line-height: 0;
 
+  &__title {
+    display: none;
+  }
+
   &__link {
     display: block;
   }
@@ -448,11 +452,37 @@
 //                  pillar
 // ===========================================
 
+.mouse-stalker {
+  display: none;
+
+  @include mediaquery(pc) {
+    display: block;
+    position: fixed;
+    top: -4vw;
+    left: -4vw;
+    width: 8vw;
+    height: 8vw;
+    z-index: 9;
+    pointer-events: none;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+}
+
+// ===========================================
+//                  pillar
+// ===========================================
+
 .pillar {
   display: none;
 
   @include mediaquery(pc) {
     display: block;
+    pointer-events: none;
     color: $base-color;
   }
 

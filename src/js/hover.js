@@ -154,7 +154,7 @@ window.addEventListener('DOMContentLoaded', () => {
     hover() {
       for (let i = 0; i < this.list.length; i++) {
         const listItem = this.list[i].querySelectorAll(this.item);
-        console.log(listItem);
+
         this.list[i].addEventListener('mouseenter', () => {
           gsap.to(listItem, {
             opacity: .2
@@ -169,15 +169,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
         for (let i = 0; i < listItem.length; i++) {
           listItem[i].addEventListener('mouseenter', () => {
-            console.log(listItem[i])
             gsap.to(listItem[i], {
               opacity: 1
             });
           });
 
           listItem[i].addEventListener('mouseleave', () => {
-            console.log(listItem[i])
-
             gsap.to(listItem[i], {
               opacity: .2
             });
@@ -189,6 +186,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const globalNaviHover = new HoverFade('.global-navi__list', '.global-navi__item');
   const mainMenuHover = new HoverFade('.main-menu__list', '.main-menu__item');
+  const newsListHover = new HoverFade('.stack-list', '.stack-list__item');
+  const snsListHover = new HoverFade('.sns__list', '.sns__item');
 
   class HoverMove {
     constructor(el, image) {
@@ -225,9 +224,6 @@ window.addEventListener('DOMContentLoaded', () => {
     hover() {
       for (let i = 0; i < this.el.length; i++) {
         this.el[i].addEventListener('mouseenter', () => {
-          // gsap.to(this.el[i].querySelector(this.image), {
-          //   scale: 1.2,
-          // });
         });
 
         this.el[i].addEventListener('mousemove', e => {
@@ -265,4 +261,111 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   const hoverMove = new HoverMove('.js-hover-move', '.js-hover-move__image');
+
+  class HoverImageList {
+    constructor(list, listItem, imageList, imageListItem) {
+      this.list = document.querySelector(list);
+      this.listItem = this.list.querySelectorAll(listItem);
+      this.imageList = document.querySelector(imageList);
+      this.imageListItem = this.imageList.querySelectorAll(imageListItem);
+
+      this.listEnter();
+      this.move();
+      this.listLeave();
+    }
+
+    listEnter() {
+      for (let i = 0; i < this.listItem.length; i++) {
+        this.listItem[i].addEventListener('mouseenter', () => {
+          gsap.to(this.imageListItem[i], {
+            opacity: 1
+          });
+        });
+      }
+    }
+
+    move() {
+      this.list.addEventListener('mousemove', e => {
+        const listProperty = this.list.getBoundingClientRect();
+        const offsetX = e.clientX - listProperty.left;
+        const offsetY = e.clientY - listProperty.top;
+
+        gsap.to(this.imageList, {
+          x: offsetX,
+          y: offsetY
+        });
+      });
+    }
+
+    listLeave() {
+      for (let i = 0; i < this.listItem.length; i++) {
+        this.listItem[i].addEventListener('mouseleave', () => {
+          gsap.to(this.imageListItem[i], {
+            opacity: 0
+          });
+        });
+      }
+    }
+  }
+
+  const hoverImageList = new HoverImageList('.stack-list', '.stack-list__item', '.hover-image-list', '.hover-image-list__item');
+
+  // ===========================================
+  //                  mouse-stalker
+  // ===========================================
+
+  class MouseCricleText {
+    constructor(mouseStalker, cricle, text, area) {
+      this.mouseStalker = document.querySelector(mouseStalker);
+      this.cricle = this.mouseStalker.querySelector(cricle);
+      this.cricleStroke = 0;
+      this.text = this.mouseStalker.querySelector(text);
+      this.area = document.querySelectorAll(area);
+
+      this.set();
+
+      window.addEventListener('resize', () => {
+        this.set();
+      });
+
+      this.enter();
+      this.move();
+    }
+
+    set() {
+      const cricleProperty = this.cricle.getBoundingClientRect();
+      this.cricleStroke = 98 * Math.PI;
+      console.log(this.cricleStroke);
+      gsap.set(this.cricle, {
+        'stroke-dasharray': this.cricleStroke,
+        'stroke-dashoffset': this.cricleStroke
+      });
+    }
+
+    enter() {
+      for (let i = 0; i < this.area.length; i++) {
+        this.area[i].addEventListener('mouseenter', () => {
+          gsap.to(this.cricle, {
+            'stroke-dashoffset': 0
+          });
+        });
+      }
+    }
+
+    move() {
+      for (let i = 0; i < this.area.length; i++) {
+        this.area[i].addEventListener('mousemove', e => {
+          const offsetX = e.clientX;
+          const offsetY = e.clientY;
+
+          gsap.to(this.mouseStalker, {
+            x: offsetX,
+            y: offsetY
+          });
+        });
+      }
+    }
+  }
+
+  const mouseCricleNext = new MouseCricleText('.mouse-stalker', '.mouse-stalker__circle', '.mouse-stalker__text--next', '.gallery__next')
 });
