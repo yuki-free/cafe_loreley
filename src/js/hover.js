@@ -2,6 +2,7 @@ import { gsap } from "gsap";
 
 window.addEventListener('DOMContentLoaded', () => {
 
+  if (window.innerWidth > 1024) {
   // ===========================================
   //                  hover
   // ===========================================
@@ -268,15 +269,28 @@ window.addEventListener('DOMContentLoaded', () => {
       this.listItem = this.list.querySelectorAll(listItem);
       this.imageList = document.querySelector(imageList);
       this.imageListItem = this.imageList.querySelectorAll(imageListItem);
-
+      this.enter();
       this.listEnter();
       this.move();
       this.listLeave();
     }
 
+    enter() {
+      this.list.addEventListener('mouseenter', e => {
+        const listProperty = this.list.getBoundingClientRect();
+        const offsetX = e.clientX - listProperty.left;
+        const offsetY = e.clientY - listProperty.top;
+
+        gsap.to(this.imageList, {
+          x: offsetX,
+          y: offsetY
+        });
+      });
+    }
+
     listEnter() {
       for (let i = 0; i < this.listItem.length; i++) {
-        this.listItem[i].addEventListener('mouseenter', () => {
+        this.listItem[i].addEventListener('mouseenter', e => {
           gsap.to(this.imageListItem[i], {
             opacity: 1
           });
@@ -315,10 +329,12 @@ window.addEventListener('DOMContentLoaded', () => {
   // ===========================================
 
   class MouseCricleText {
-    constructor(mouseStalker, cricle, text, area) {
+    constructor(mouseStalker, container, circle, effect, text, area) {
       this.mouseStalker = document.querySelector(mouseStalker);
-      this.cricle = this.mouseStalker.querySelector(cricle);
-      this.cricleStroke = 0;
+      this.container = this.mouseStalker.querySelector(container);
+      this.circle = this.mouseStalker.querySelector(circle);
+      this.circleStroke = 0;
+      this.effect = this.mouseStalker.querySelector(effect);
       this.text = this.mouseStalker.querySelector(text);
       this.area = document.querySelectorAll(area);
 
@@ -330,23 +346,49 @@ window.addEventListener('DOMContentLoaded', () => {
 
       this.enter();
       this.move();
+      this.leave();
+      this.click();
     }
 
     set() {
-      const cricleProperty = this.cricle.getBoundingClientRect();
-      this.cricleStroke = 98 * Math.PI;
-      console.log(this.cricleStroke);
-      gsap.set(this.cricle, {
-        'stroke-dasharray': this.cricleStroke,
-        'stroke-dashoffset': this.cricleStroke
+      const circleProperty = this.circle.getBoundingClientRect();
+      this.circleStroke = 98 * Math.PI;
+      gsap.set(this.circle, {
+        'stroke-dasharray': this.circleStroke,
+        'stroke-dashoffset': this.circleStroke
       });
     }
 
     enter() {
       for (let i = 0; i < this.area.length; i++) {
         this.area[i].addEventListener('mouseenter', () => {
-          gsap.to(this.cricle, {
-            'stroke-dashoffset': 0
+          gsap.fromTo(this.mouseStalker, {
+            opacity: 0
+          }, {
+            opacity: 1,
+          });
+
+          gsap.fromTo(this.circle, {
+            'stroke-dashoffset': this.circleStroke
+          }, {
+            'stroke-dashoffset': 0,
+          });
+
+          gsap.fromTo(this.container, {
+            rotation: -90
+          }, {
+            rotation: 270
+          });
+
+          gsap.fromTo(this.text.querySelectorAll('span'), {
+            yPercent: 100,
+            opacity: 0
+          }, {
+            yPercent: 0,
+            opacity: 1,
+            stagger: {
+              amount: .2
+            }
           });
         });
       }
@@ -365,7 +407,86 @@ window.addEventListener('DOMContentLoaded', () => {
         });
       }
     }
+
+    leave() {
+      for (let i = 0; i < this.area.length; i++) {
+        this.area[i].addEventListener('mouseleave', () => {
+          gsap.to(this.mouseStalker, {
+            opacity: 0,
+          });
+
+          gsap.to(this.circle, {
+            'stroke-dashoffset': -this.circleStroke,
+          });
+
+          gsap.to(this.container, {
+            rotation: 630
+          });
+
+          gsap.to(this.text.querySelectorAll('span'), {
+            yPercent: -100,
+            opacity: 0,
+            stagger: {
+              amount: .2
+            }
+          });
+        });
+      }
+    }
+
+    click() {
+      for (let i = 0; i < this.area.length; i++) {
+        this.area[i].addEventListener('click', () => {
+          gsap.set(this.circle, {
+            opacity: 0
+          });
+  
+          gsap.set(this.text, {
+            opacity: .5
+          });
+  
+          gsap.fromTo(this.effect, {
+            'border-width': '0vw',
+            x: '0vw',
+            y: '0vw',
+            opacity: 1
+
+          }, {
+            'border-width': '2vw',
+            x: '-2vw',
+            y: '-2vw',
+            opacity: 0
+          });
+  
+          setTimeout( () => {
+            gsap.fromTo(this.circle, {
+              'stroke-dashoffset': this.circleStroke
+            }, {
+              'stroke-dashoffset': 0,
+            });
+  
+            gsap.fromTo(this.container, {
+              rotation: -90
+            }, {
+              rotation: 270
+            });
+    
+            gsap.to(this.circle, {
+              opacity: 1
+            });
+  
+            gsap.to(this.text, {
+              opacity: 1
+            });
+    
+          }, 500);
+        });
+      }
+    }
   }
 
-  const mouseCricleNext = new MouseCricleText('.mouse-stalker', '.mouse-stalker__circle', '.mouse-stalker__text--next', '.gallery__next')
+  const mouseCriclePrev = new MouseCricleText('.mouse-stalker', '.mouse-stalker__circle-outer', '.mouse-stalker__circle', '.mouse-stalker__circle-effect', '.mouse-stalker__text--prev', '.gallery__prev');
+  const mouseCricleNext = new MouseCricleText('.mouse-stalker', '.mouse-stalker__circle-outer', '.mouse-stalker__circle', '.mouse-stalker__circle-effect', '.mouse-stalker__text--next', '.gallery__next');
+  
+  }
 });

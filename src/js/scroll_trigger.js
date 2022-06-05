@@ -59,11 +59,21 @@ window.addEventListener('DOMContentLoaded', () => {
         opacity: 0,
         'pointer-events': 'none'
       });
+
+      gsap.to('.global-navi__list', {
+        'pointer-events': 'none'
+      });
+
     } else {
       gsap.to('.header', {
         opacity: 1,
         'pointer-events': 'auto'
       });
+
+      gsap.to('.global-navi__list', {
+        'pointer-events': 'auto'
+      });
+
     }
 
     beforePosition = scrollTop;
@@ -877,15 +887,12 @@ window.addEventListener('DOMContentLoaded', () => {
         if (this.el[i].classList.contains('is-show') !== true) {
           this.elOffset[i] = this.el[i].getBoundingClientRect().left;
           if (windowWidth * .75 > this.elOffset[i]) {
-            gsap.to(this.el[i].querySelector(this.image), {
-              opacity: 1,
-              duration: 0.1,
-              delay: .4,
-              scrollTrigger: {
-                trigger: this.el[i],
-                start: 'top center'
-              }
-            });
+            setTimeout( () => {
+              gsap.set(this.el[i].querySelector(this.image), {
+                opacity: 1,
+
+              });
+            }, 400);
     
             gsap.fromTo(this.el[i].querySelector(this.overlay), {
               'clip-path': 'inset(0 0 0 0%)',
@@ -893,11 +900,7 @@ window.addEventListener('DOMContentLoaded', () => {
               'clip-path': 'inset(0 0 0 100%)',
               ease: 'expo.out',
               duration: .4,
-              delay: .8,
-              scrollTrigger: {
-                trigger: this.el[i],
-                start: 'top center'
-              }
+              delay: .8
             });
     
             gsap.fromTo(this.el[i].querySelector(this.overlay), {
@@ -905,11 +908,7 @@ window.addEventListener('DOMContentLoaded', () => {
             }, {
               'clip-path': 'inset(0 0% 0 0)',
               ease: 'expo.in',
-              duration: .4,
-              scrollTrigger: {
-                trigger: this.el[i],
-                start: 'top center'
-              }
+              duration: .4
             });
 
             this.el[i].classList.add('is-show');

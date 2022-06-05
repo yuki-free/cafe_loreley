@@ -150,6 +150,7 @@
 
   &__slider {
     position: relative;
+    overflow: hidden;
 
     @include mediaquery(pc) {
       @include pc-padding;
@@ -159,6 +160,7 @@
   &__list {
     display: flex;
     width: max-content;
+    cursor: grab;
   }
 
   &__item {
@@ -182,21 +184,25 @@
   }
 
   &__prev {
-    width: 25vw;
-    height: calc(100% + 10vw);
-    position: absolute;
-    top: -5vw;
-    left: 0;
-    cursor: pointer;
+    @include mediaquery(pc) {
+      width: 20vw;
+      height: calc(100% + 10vw);
+      position: absolute;
+      top: -5vw;
+      left: 0;
+      cursor: pointer;  
+    }
   }
 
   &__next {
-    width: 25vw;
-    height: calc(100% + 10vw);
-    position: absolute;
-    top: -5vw;
-    right: 0;
-    cursor: pointer;
+    @include mediaquery(pc) {
+      width: 20vw;
+      height: calc(100% + 10vw);
+      position: absolute;
+      top: -5vw;
+      right: 0;
+      cursor: pointer;  
+    }
   }
 
 }
