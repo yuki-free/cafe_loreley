@@ -7,7 +7,7 @@ export let galleryOffset = [];
 
 window.addEventListener('DOMContentLoaded', () => {
 
-  const scrollDuration = 700;
+  const scrollDuration = 800;
 
   let windowWidth = window.innerWidth;
   let windowHeight = window.innerHeight;

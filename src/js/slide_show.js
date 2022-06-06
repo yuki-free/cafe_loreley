@@ -8,8 +8,9 @@ window.addEventListener('DOMContentLoaded', () => {
   class SlideShow {
     constructor(webgl) {
       this.webgl = webgl;
-      this.width = innerWidth;
-      this.height = innerHeight;
+      this.webglProp = this.webgl.getBoundingClientRect();
+      this.width = this.webglProp.width;
+      this.height = this.webglProp.height;
   
       this.scene = new THREE.Scene();
       this.renderer = new THREE.WebGLRenderer({
@@ -41,17 +42,21 @@ window.addEventListener('DOMContentLoaded', () => {
       let currentNum = 0;
       let nextNum = currentNum + 1;
 
-      setTimeout( () => {
+      const transition = () => {
         gsap.to(this.material.uniforms.uAnimation, {
           value: 1,
           duration: 2,
-          delay: 1,
           ease: 'expo.in'
         });
 
-        currentNum = nextNum;
-        nextNum += 1;
-  
+        if (nextNum >= this.sliderImage.length - 1) {
+          currentNum = nextNum;
+          nextNum = 0;
+        } else {
+          currentNum = nextNum;
+          nextNum += 1;  
+        }
+
         setTimeout( () => {
           gsap.set(this.material.uniforms.uTexture1, {
             value: this.sliderImage[currentNum]
@@ -61,9 +66,17 @@ window.addEventListener('DOMContentLoaded', () => {
             value: this.sliderImage[nextNum]
           });
 
+          gsap.set(this.material.uniforms.uAnimation, {
+            value: 0
+          });
+
+          setTimeout(transition, 5000);
         }, 3000);
-      }, 8000)
+      }
+
+      setTimeout(transition, 5000);
     }
+
   
     setting() {
       this.webgl.appendChild(this.renderer.domElement);
@@ -121,8 +134,9 @@ window.addEventListener('DOMContentLoaded', () => {
     } 
 
     onResize() {
-      this.width = innerWidth;
-      this.height = innerHeight;
+      this.webglProp = this.webgl.getBoundingClientRect();
+      this.width = this.webglProp.width;
+      this.height = this.webglProp.height;
       this.material.uniforms.uResolution.value = this.setCover(this.aspect);
       this.mesh.scale.x = this.width;
       this.mesh.scale.y = this.height;
