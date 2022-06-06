@@ -28,6 +28,13 @@ module.exports = {
 
   module: {
     rules: [
+      //シェーダー
+      {
+        test: /\.(vert|frag|glsl)$/,
+        use: {
+          loader: 'webpack-glsl-loader'
+        }
+      },
       // Sassファイルの読み込みとコンパイル
       {
         test: /\.scss/, // 対象となるファイルの拡張子

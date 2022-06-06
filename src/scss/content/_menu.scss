@@ -253,6 +253,11 @@
   width: 100vw;
   height: 100vh;
   min-height: 125vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $base-color;
+  position: relative;
 
   @include mediaquery(pc) {
     min-height: 45vw;
@@ -266,6 +271,29 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    @include mediaquery(pc) {
+      object-position: 40% 75%;
+
+    }
+  }
+
+  &__text {
+    font-size: 5em;
+    line-height: 1;
+    overflow: hidden;
+
+    span {
+      display: inline-block;
+    }
+  
+    @include mediaquery(pc) {
+      font-size: 9.818181818181818em;
+    }
   }
 }
 

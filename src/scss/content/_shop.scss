@@ -150,7 +150,6 @@
 
   &__slider {
     position: relative;
-    overflow: hidden;
 
     @include mediaquery(pc) {
       @include pc-padding;
@@ -204,5 +203,4 @@
       cursor: pointer;  
     }
   }
-
 }

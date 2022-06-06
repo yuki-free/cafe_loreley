@@ -534,14 +534,13 @@ window.addEventListener('DOMContentLoaded', () => {
     const jsArticle3Horizontal = new JsArticle3Horizontal('.js-article3--horizontal', '.js-article3__title--horizontal span', '.js-article3__text--horizontal');
   }
 
-  class JsTitle2 {
-    constructor(trigger, main, sub) {
+
+  class JsText2 {
+    constructor(trigger, main) {
       this.trigger = document.querySelectorAll(trigger);
       this.main = main;
-      this.sub = sub;
 
       this.mainAnimation();
-      this.subAnimation();
     }
 
     mainAnimation() {
@@ -558,6 +557,15 @@ window.addEventListener('DOMContentLoaded', () => {
           }
         });
       }
+    }
+  }
+
+  class JsTitle2 extends JsText2 {
+    constructor(trigger, main, sub) {
+      super(trigger, main);
+      this.sub = sub;
+
+      this.subAnimation();
     }
 
     subAnimation() {
@@ -582,15 +590,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const jsTitle2 = new JsTitle2('.js-title2', '.js-title2__main span', '.js-title2__sub span');
 
-  class JsTitle2Horizontal {
-    constructor(title, main, sub, trigger) {
+  class JsText2Horizontal {
+    constructor(title, main, trigger) {
       this.title = document.querySelectorAll(title);
       this.main = main;
-      this.sub = sub;
       this.trigger = document.querySelectorAll(trigger);
 
       this.mainAnimation();
-      this.subAnimation();
     }
 
     mainAnimation() {
@@ -607,6 +613,15 @@ window.addEventListener('DOMContentLoaded', () => {
           }
         });
       }
+    }
+  }
+
+  class JsTitle2Horizontal extends JsText2Horizontal {
+    constructor(title, main, sub, trigger) {
+      super(title, main, trigger);
+      this.sub = sub;
+
+      this.subAnimation();
     }
 
     subAnimation() {
@@ -633,6 +648,12 @@ window.addEventListener('DOMContentLoaded', () => {
     const jsTitle2Horizontal = new JsTitle2('.js-title2--horizontal', '.js-title2__main--horizontal span', '.js-title2__sub--horizontal span');
   } else {
     const jsTitle2Horizontal = new JsTitle2Horizontal('.js-title2--horizontal', '.js-title2__main--horizontal span', '.js-title2__sub--horizontal span', '.cover-dummy');
+  }
+
+  if (windowWidth <= 1024) {
+    const jsText2Horizontal = new JsText2('.js-text2--horizontal', '.js-text2__text--horizontal span');
+  } else {
+    const jsText2Horizontal = new JsText2Horizontal('.js-text2--horizontal', '.js-text2__text--horizontal span', '.menu__margin--outro');
   }
 
   class JsArticle2 {
