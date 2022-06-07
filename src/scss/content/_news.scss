@@ -9,6 +9,7 @@
   padding-top: 10vw;
   padding-bottom: 10vw;
   background: $base-color;
+  overflow: hidden;
 
   @include mediaquery(pc) {
     padding: 10vw 10vw 10vw;

@@ -7,7 +7,7 @@ export let galleryOffset = [];
 
 window.addEventListener('DOMContentLoaded', () => {
 
-  const scrollDuration = 800;
+  const scrollDuration = 1000;
 
   let windowWidth = window.innerWidth;
   let windowHeight = window.innerHeight;
@@ -639,7 +639,7 @@ window.addEventListener('DOMContentLoaded', () => {
             trigger: this.trigger[i],
             start: 'top top'
           }
-        });  
+        }); 
       }
     }
   }
@@ -1194,24 +1194,27 @@ window.addEventListener('DOMContentLoaded', () => {
     const parallax = new Parallax('.js-parallax', '120%')
   }
 
-  const gallery = document.getElementsByClassName('gallery__list')[0];
-  const galleryList = gallery.getElementsByClassName('gallery__item');
-  galleryOffset = [];
-  const getGalleryOffset = () => {
-    for (let i = 0; i < galleryList.length; i++) {
-      galleryList[i].getBoundingClientRect().left;
-    }
-  }
+  // const gallery = document.getElementsByClassName('gallery__list')[0];
+  // const galleryList = gallery.getElementsByClassName('gallery__item');
+  // galleryOffset = [];
+  // const getGalleryOffset = () => {
+  //   for (let i = 0; i < galleryList.length; i++) {
+  //     galleryList[i].getBoundingClientRect().left;
+  //   }
+  // }
 
-  gsap.from('.gallery__list', {
+  gsap.set('.gallery__list', {
     x: '100vw',
+  });
+
+  gsap.to('.gallery__list', {
+    x: '0vw',
     duration: 2.2,
     ease: 'power4.out',
     scrollTrigger: {
       trigger: '.gallery__list',
       start: 'top center'
-    },
-    onComplete: getGalleryOffset
+    }
   });
 
   // ===========================================

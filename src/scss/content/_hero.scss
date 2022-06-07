@@ -12,6 +12,7 @@
   width: 100vw;
   height: 100vh;
   min-height: 125vw;
+  overflow: hidden;
 
   @include mediaquery(pc) {
     min-height: 45vw;

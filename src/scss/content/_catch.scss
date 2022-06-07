@@ -30,6 +30,10 @@
     @include mediaquery(pc) {
       font-size: 11em;
       line-height: 1;
-    }  
+    }
+
+    span {
+      display: inline-block;
+    }
   }
 }
