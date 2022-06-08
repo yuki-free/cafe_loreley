@@ -55,7 +55,7 @@
     font-size: 12em;
     font-weight: 500;
     line-height: 1;
-    background: $accent-color;
+    background: linear-gradient(45deg, rgb(202, 246, 255) 5%, rgb(255, 210, 215), rgb(202, 246, 255) 85%);
     -webkit-background-clip: text;
     color: transparent;
     padding-right: 1em;

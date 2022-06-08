@@ -283,7 +283,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
         gsap.to(this.imageList, {
           x: offsetX,
-          y: offsetY
+          y: offsetY,
+          duration: 1
         });
       });
     }
@@ -293,6 +294,13 @@ window.addEventListener('DOMContentLoaded', () => {
         this.listItem[i].addEventListener('mouseenter', e => {
           gsap.to(this.imageListItem[i], {
             opacity: 1
+          });
+
+          gsap.fromTo(this.imageListItem[i], {
+            scale: 1.2
+          }, {
+            scale: 1,
+            duration: 1
           });
         });
       }
@@ -306,7 +314,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
         gsap.to(this.imageList, {
           x: offsetX,
-          y: offsetY
+          y: offsetY,
+          duration: 1
         });
       });
     }

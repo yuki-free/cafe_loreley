@@ -195,22 +195,22 @@ window.addEventListener('DOMContentLoaded', () => {
       ScrollTrigger.batch('.catch-copy__main', {
         onEnter: () => gsap.to(this.material.uniforms.uAnimation, {
           value: 1,
-          duration: 2,
+          duration: 1.5,
           ease: 'expo.in'
         }),
         onLeaveBack: () => gsap.to(this.material.uniforms.uAnimation, {
           value: 0,
-          duration: 2,
+          duration: 1.5,
           ease: 'expo.out'
         }),
         onLeave: () => gsap.to(this.material.uniforms.uAnimation, {
           value: 0,
-          duration: 2,
+          duration: 1.5,
           ease: 'expo.out'
         }),
         onEnterBack: () => gsap.to(this.material.uniforms.uAnimation, {
           value: 1,
-          duration: 2,
+          duration: 1.5,
           ease: 'expo.in'
         }),
         start: 'top 49%',
@@ -324,8 +324,8 @@ window.addEventListener('DOMContentLoaded', () => {
   })
   .to('.opening', {
     opacity: 0,
-    scale: 1.1,
-    filter: 'blur(2em)',
+    scale: 1.2,
+    filter: 'blur(5em)',
     'pointer-events': 'none',
     duration: 1,
     ease: 'expo.in'

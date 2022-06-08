@@ -12,4 +12,6 @@ import "./js/slide_show";
 import "./js/gallery";
 import "./js/menu";
 import "./js/hover";
+import "./js/animation";
 import "./js/resize";
+

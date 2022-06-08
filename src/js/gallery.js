@@ -1,11 +1,6 @@
 import { gsap } from "gsap";
-// import { galleryOffset } from "./scroll_trigger";
-
 
 window.addEventListener('DOMContentLoaded', () => {
-
-  // console.log(galleryOffset);
-
   class Slider {
     constructor(slider, list, item, prev, next) {
       this.slider = document.querySelector(slider);
