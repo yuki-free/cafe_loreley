@@ -148,19 +148,20 @@
     &--top {
       top: 0;
       left: -50%;
-      transform-origin: middle left ;
+      transform-origin: left middle;
     }
 
     &--middle {
       top: 50%;
       left: 0;
       transform: translate(0, -50%);
+      transform-origin: center;
     }
 
     &--bottom {
       bottom: 0;
       right: -50%;
-      transform-origin: middle right;
+      transform-origin: right middle;
     }
   }
 }
@@ -178,6 +179,7 @@
   top: 0;
   left: 0;
   z-index: 10;
+  padding-top: 20vh;
   clip-path: inset(100% 0 0 0);
   opacity: 0;
   
@@ -189,77 +191,81 @@
   &__body {
     width: 100%;
     height: 100%;
-    padding-top: 15vh;
+    @include sp-padding;
     color: $base-color;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
 
     @include mediaquery(pc) {
-      width: 50%;
+      @include pc-padding;
+
     }
   }
 
   &__list {
-    width: max-content;
-    height: 70%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    font-size: 1.666666666666667em;
-    margin: 0 auto 5vh;
+    font-size: 5em;
+    line-height: .8;
+    margin-bottom: 5vh;
 
     @include mediaquery(pc) {
-      font-size: 2.727272727272727em;
+      display: flex;
+      flex-wrap: wrap;  
+      font-size: 8em;
     }
   }
 
   &__item {
-    text-align: center;
     overflow: hidden;
+    margin-right: .5em;
   }
 
   &__link {
     display: block;
+  }
 
-    @include mediaquery(pc) {
-      padding: 0;
+  &__sub {
+    text-align: right;
+  }
+
+  &__sub-body {
+    margin-bottom: .5em;
+  }
+
+  &__sub-text {
+    text-align: right;
+    line-height: 1.5;
+    overflow: hidden;
+
+    span {
+      display: inline-block;
     }
   }
 
-  &__second-list {
-    display: flex;
-    justify-content: center;
-    line-height: 0;
+  &__sub-list {
+    display: inline-block;
+    text-align: right;
   }
 
-  &__second-item:not(:last-child) {
-    margin-right: 2.5vw;
+  &__sub-item {
+    overflow: hidden;
   }
 
-  &__second-link {
-    display: block;
-    padding: 10px;
-  }
-
-  &__second-image {
-    width: min(calc(20 / 375 * 100vw), 36px);
-    height: auto;
-
-    @include mediaquery(pc) {
-      width: calc(42 / 1920 * 100vw);
-    }
-  }
-
-  &__copy-right {
-    text-align: center;
-
+  &__sub-link {
+    display: inline-block;
+    line-height: 1.5;
   }
 
   &__image-outer {
-    display: none;
-
-    @include mediaquery(pc) {
-      display: block;
-      width: 50%;
-    }
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: .2;
+    width: 100%;
+    height: 100%;
+    background: url(img/main-menu__bg.jpg) 50% 54%/cover;
+    filter: blur(.3vw);
   }
 
   &__image-list {
@@ -275,6 +281,7 @@
     left: 0;
     width: 100%;
     height: 100%;
+    opacity: 0;
   }
 
   &__image {
@@ -530,8 +537,9 @@
     }
 
     &--right {
-      right: 5vw;
-      transform: translate(50%, -50%) rotate(90deg);
+      left: 95vw;
+      transform: translate(-50%, -50%) rotate(90deg);
+      white-space: nowrap;
     }
   }
 }

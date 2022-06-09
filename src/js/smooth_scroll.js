@@ -187,5 +187,29 @@ window.addEventListener('DOMContentLoaded', () => {
     const horizontalScroll = new HorizontalScroll('.horizontal-scroll');
     const ineatiaScroll = new InertiaScroll('.scroll-container');
   }
+
+  class HrefOverWrite {
+    constructor(el, href) {
+      this.el = document.querySelectorAll(el);
+      this.href = href;
+
+      this.overWrite();
+    }
+
+    overWrite() {
+      for(let i = 0; i < this.el.length; i++) {
+        this.el[i].setAttribute('href', this.href);
+      }
+    }
+  }
+
+  if (window.innerWidth >= 1024) {
+    const hrefOverWriteConcept = new HrefOverWrite('a[href="#concept"]', '#concept-pc');
+    const hrefOverWriteNews = new HrefOverWrite('a[href="#news"]', '#news-pc');
+    const hrefOverWriteShop = new HrefOverWrite('a[href="#shop"]', '#shop-pc');
+    const hrefOverWriteConcept2 = new HrefOverWrite('a[href="../#concept"]', '../#concept-pc');
+    const hrefOverWriteNews2 = new HrefOverWrite('a[href="../#news"]', '../#news-pc');
+    const hrefOverWriteShop2 = new HrefOverWrite('a[href="../#shop"]', '../#shop-pc');
+  }
 });
 

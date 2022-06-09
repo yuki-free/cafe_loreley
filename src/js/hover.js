@@ -187,6 +187,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const globalNaviHover = new HoverFade('.global-navi__list', '.global-navi__item');
   const mainMenuHover = new HoverFade('.main-menu__list', '.main-menu__item');
+  const mainMenuSubHover = new HoverFade('.main-menu__sub-list', '.main-menu__sub-link');
   const newsListHover = new HoverFade('.stack-list', '.stack-list__item');
   const snsListHover = new HoverFade('.sns__list', '.sns__item');
 
@@ -496,6 +497,44 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const mouseCriclePrev = new MouseCricleText('.mouse-stalker', '.mouse-stalker__circle-outer', '.mouse-stalker__circle', '.mouse-stalker__circle-effect', '.mouse-stalker__text--prev', '.gallery__prev');
   const mouseCricleNext = new MouseCricleText('.mouse-stalker', '.mouse-stalker__circle-outer', '.mouse-stalker__circle', '.mouse-stalker__circle-effect', '.mouse-stalker__text--next', '.gallery__next');
+
+  class MenuHover {
+    constructor(list, imageList) {
+      this.list = document.querySelectorAll(list);
+      this.imageList = document.querySelectorAll(imageList);
+
+      this.enter();
+      this.leave();
+    }
+
+    enter() {
+      for (let i = 0; i < this.list.length; i++) {
+        this.list[i].addEventListener('mouseenter', () => {
+          gsap.fromTo(this.imageList[i], {
+            opacity: 0,
+            scale: 1.2
+          }, {
+            scale: 1,
+            opacity: 1,
+            duration: 1.5
+          });
+        });
+      }
+    }
+
+    leave() {
+      for (let i = 0; i < this.list.length; i++) {
+        this.list[i].addEventListener('mouseleave', () => {
+          gsap.to(this.imageList[i], {
+            opacity: 0,
+            duration: 1.5
+          });
+        });
+      }
+    }
+  }
+
+  const menuHover = new MenuHover('.main-menu__item', '.main-menu__image-item');
   
   }
 });

@@ -186,9 +186,9 @@ window.addEventListener('DOMContentLoaded', () => {
   
       this.loadManager.onLoad = () => {
         this.setting();
+        this.scrollTransition();
       }
 
-      this.scrollTransition();
     }
 
     scrollTransition() {

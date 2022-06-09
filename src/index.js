@@ -14,4 +14,3 @@ import "./js/menu";
 import "./js/hover";
 import "./js/animation";
 import "./js/resize";
-

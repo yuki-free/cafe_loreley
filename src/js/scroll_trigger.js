@@ -1194,20 +1194,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const parallax = new Parallax('.js-parallax', '120%')
   }
 
-  // const gallery = document.getElementsByClassName('gallery__list')[0];
-  // const galleryList = gallery.getElementsByClassName('gallery__item');
-  // galleryOffset = [];
-  // const getGalleryOffset = () => {
-  //   for (let i = 0; i < galleryList.length; i++) {
-  //     galleryList[i].getBoundingClientRect().left;
-  //   }
-  // }
-
-  gsap.set('.gallery__list', {
-    x: '100vw',
-  });
-
-  gsap.to('.gallery__list', {
+  gsap.fromTo('.gallery__list', {
+    x: '100vw'
+  }, {
     x: '0vw',
     duration: 2.2,
     ease: 'power4.out',
