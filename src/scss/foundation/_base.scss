@@ -1,5 +1,9 @@
 @use "../var" as *;
 
+html{
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Cormorant Infant', 'Yu Mincho','YuMincho', serif;
   width: 100%;
@@ -7,10 +11,15 @@ body {
   background: $base-color;
   font-size: min(calc(12 / 375 * 100vw), 20px);
   line-height: 1;
-  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
   @include mediaquery(pc) {
     font-size: calc(22 / 1920 * 100vw);
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 

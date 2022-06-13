@@ -61,11 +61,11 @@
 // ===========================================
 
 .header {
-  width: 100vw;
-  padding: calc(20 / 375 * 100vw) calc(25 / 375 * 100vw) 0;
+  padding-top: calc(20 / 375 * 100vw);
   position: fixed;
   top: 0;
-  left: 0;
+  right: calc(25 / 375 * 100vw);
+  left: calc(25 / 375 * 100vw);
   z-index: 11;
   display: flex;
   justify-content: space-between;
@@ -73,13 +73,70 @@
   color: #fff;
 
   @include mediaquery(pc) {
-    padding: 3vw 5vw 0;
+    padding-top: 3vw;
+    right: 5vw;
+    left: 5vw;  
   }
 
   &__logo {
     @include mediaquery(pc) {
       margin-right: 20vw;
     }
+
+    .logo__image.gray {
+      fill: $base-font-color;
+    }
+  }
+}
+
+.header.base-color {
+  .logo__image {
+    fill: $base-font-color;
+    transition: fill 1s;
+  }
+
+  .header__global-navi {
+    color: $base-font-color;
+    transition: color 1s;
+  }
+
+  .hamburger-button__bar {
+    background: $base-font-color;
+    transition: background 1s;
+  }
+}
+
+.header.invert-color {
+  .logo__image {
+    fill: $main-font-color;
+    transition: fill 1s;
+  }
+
+  .header__global-navi {
+    color: $main-font-color;
+    transition: color 1s;
+  }
+
+  .hamburger-button__bar {
+    background: $main-font-color;
+    transition: background 1s;
+  }
+}
+
+.header.white-color {
+  .logo__image {
+    fill: $base-color;
+    transition: fill 1s;
+  }
+
+  .header__global-navi {
+    color: $base-color;
+    transition: color 1s;
+  }
+
+  .hamburger-button__bar {
+    background: $base-color;
+    transition: background 1s;
   }
 }
 
@@ -171,10 +228,9 @@
 // ===========================================
 
 .main-menu {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   min-height: 125vw;
-  background: $accent-color;
   position: fixed;
   top: 0;
   left: 0;
@@ -186,6 +242,16 @@
   @include mediaquery(pc) {
     display: flex;
     min-height: 45vw;
+  }
+
+  &__bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: $accent-color
   }
 
   &__body {
@@ -206,12 +272,13 @@
   &__list {
     font-size: 5em;
     line-height: .8;
-    margin-bottom: 5vh;
+    margin-bottom: 10vh;
 
     @include mediaquery(pc) {
       display: flex;
       flex-wrap: wrap;  
       font-size: 8em;
+      margin-bottom: 5vh;
     }
   }
 
@@ -264,8 +331,18 @@
     opacity: .2;
     width: 100%;
     height: 100%;
-    background: url(img/main-menu__bg.jpg) 50% 54%/cover;
     filter: blur(.3vw);
+  }
+
+  &__image-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 54%;
   }
 
   &__image-list {
@@ -524,6 +601,19 @@
     display: block;
     pointer-events: none;
     color: $base-color;
+    transition: color 1s;
+  }
+
+  &.base-color {
+    color: $base-font-color;
+  }
+
+  &.invert-color {
+    color: $main-font-color;
+  }
+
+  &.white-color {
+    color: $base-color;
   }
 
   &__content {
@@ -537,9 +627,8 @@
     }
 
     &--right {
-      left: 95vw;
-      transform: translate(-50%, -50%) rotate(90deg);
-      white-space: nowrap;
+      right: 5vw;
+      transform: translate(50%, -50%) rotate(90deg);
     }
   }
 }
@@ -588,8 +677,14 @@
   }
 
   &__title {
+    overflow: hidden;
+
     @include mediaquery(pc) {
       font-size: 8.5em;
+    }
+
+    span {
+      display: inline-block;
     }
   }
 
@@ -602,6 +697,12 @@
     @include mediaquery(pc) {
       left: 10vw;
       right: 10vw;
+    }
+  }
+
+  &__sub-title {
+    span {
+      display: inline-block;
     }
   }
 }
@@ -620,9 +721,60 @@
       content: "/";
       margin: 0 .5em;
     }
+  }
+}
 
-    &:last-of-type {
-      font-weight: 500;
+// ===========================================
+//                  transition
+// ===========================================
+
+.transition {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 25;
+  background: $accent-color;
+}
+
+.transition-layer {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 24;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+}
+
+// ===========================================
+//                  scroll-bar
+// ===========================================
+
+.scroll-bar {
+  position: fixed;
+  top: 0;
+  right: 2px;
+  z-index: 8;
+  width: 8px;
+  height: 100vh;
+
+  &__thumb {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 4px;
+    cursor: grab;
+    opacity: 0;
+    transition: background .6s;
+
+    &.invert {
+      background: rgba(255, 255, 255, .5);
     }
   }
 }

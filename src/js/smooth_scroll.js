@@ -136,6 +136,7 @@ window.addEventListener('DOMContentLoaded', () => {
     set(el) {
       for (let i = 0; i < el.length; i++) {
         gsap.set(el[i], {
+          width: '100%',
           position: 'fixed',
           'z-index': 2
         });

@@ -5,6 +5,8 @@
 // ===========================================
 
 .contact {
+  background: $base-color;
+
   &__body {
     @include sp-padding;
     padding-top: 3vw;
@@ -12,14 +14,17 @@
 
     @include mediaquery(pc) {
       @include pc-padding;
+      display: flex;
+      justify-content: space-between;
     }
   }
 
-  &__container {
+  &__step {
+    display: none;
+
     @include mediaquery(pc) {
-      width: 90vw;
-      margin-right: -10vw;
-      display: flex;
+      display: block;
+      width: 30%;
     }
   }
 }
@@ -32,8 +37,7 @@
   font-family: 'Yu Mincho','YuMincho', serif;
 
   @include mediaquery(pc) {
-    width: 55%;
-    padding-right: 5vw;
+    width: 60%;
   }
 
   &__label-outer {
@@ -70,6 +74,7 @@
         height: .6em;
         background: $base-font-color;
         clip-path: polygon(50% 100%, 0 0, 100% 0);      
+        pointer-events: none;
       }
     }
   }
@@ -78,16 +83,20 @@
     display: block;
     width: 100%;
     padding: .8em 1em;
+    color: $base-font-color;    
 
     &--select {
       line-height: 1.6;
-      color: $base-font-color;
       position: relative;
     }
 
     &--area {
       line-height: 1.6;
       height: 12em;
+    }
+
+    &::placeholder {
+      color: #58616681;
     }
   }
 
@@ -154,10 +163,42 @@
 
   &__agree-label {
     cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
   }
 
   &__agree-link {
-    text-decoration: underline;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+
+    > span {
+      display: inline-block;
+
+      span {
+        line-height: 1;
+      }
+
+      span:first-of-type {
+        position: relative;
+      }
+
+      span:nth-of-type(2) {
+        position: absolute;
+        top: 100%;
+        left: 0;
+      }
+    }
+  }
+
+  &__agree-link-bar {
+    width: 100%;
+    height: 1px;
+    background: $base-font-color;
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 
   &__submit {
@@ -181,19 +222,12 @@
 // ===========================================
 
 .step {
-  display: none;
 
-  @include mediaquery(pc) {
-    @include flex-center;
-    height: 100vh;
-    min-height: 45vw;
-    width: 45%;
-    background: $accent-color;
-  }
 
   &__list {
-    width: 70%;
-    height: 60%; 
+    width: 100%;
+    height: 30vw;
+    border: 1px solid $base-font-color;
   }
 
   &__item {
@@ -203,6 +237,10 @@
     font-size: 1.5em;
     background: $base-color;
     color: $base-font-color;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $base-font-color;
+    }
 
     &.current {
       background: $base-font-color;

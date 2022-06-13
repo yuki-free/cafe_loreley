@@ -7,7 +7,7 @@ export let galleryOffset = [];
 
 window.addEventListener('DOMContentLoaded', () => {
 
-  const scrollDuration = 1000;
+  const scrollDuration = 1400;
 
   let windowWidth = window.innerWidth;
   let windowHeight = window.innerHeight;
@@ -288,6 +288,72 @@ window.addEventListener('DOMContentLoaded', () => {
   //                  invert
   // ===========================================
 
+  class InvertToggleClass {
+    constructor(el) {
+      this.el = document.querySelector(el);
+      this.shopContent = document.querySelector('.stack-list');
+
+      this.removeWhite();
+      this.invert('.concept__content-2');
+      this.invert('.shop');
+      this.shopContentInvert();
+    }
+
+    removeWhite() {
+      ScrollTrigger.batch('.concept', {
+        onEnter: () => {
+          this.el.classList.remove('white-color');
+          this.el.classList.add('base-color');
+        },
+        onLeaveBack: () => {
+          this.el.classList.add('white-color');
+          this.el.classList.remove('base-color');
+        },
+        start: 'top center',
+      });
+    }
+
+    invert(trigger) {
+      ScrollTrigger.batch(trigger, {
+        onEnter: () => {
+          this.el.classList.remove('base-color');
+          this.el.classList.add('invert-color');
+        },
+        onLeaveBack: () => {
+          this.el.classList.add('base-color');
+          this.el.classList.remove('invert-color');
+        },
+        start: 'top center',
+      });
+    }
+
+    reverseSp() {
+      ScrollTrigger.batch('.menu__item--food', {
+        onEnter: () => {
+          this.el.classList.remove('invert-color');
+          this.el.classList.add('base-color');
+        },
+        onLeaveBack: () => {
+          this.el.classList.add('invert-color');
+          this.el.classList.remove('base-color');
+        },
+        start: 'top center',
+      });
+    }
+
+    shopContentInvert() {
+      ScrollTrigger.batch('.shop', {
+        onEnter: () => {
+          this.shopContent.classList.add('invert-color');
+        },
+        onLeaveBack: () => {
+          this.shopContent.classList.remove('invert-color');
+        },
+        start: 'top center',
+      });
+    }
+  }
+
   class ScrollInvert {
     constructor(el, trigger) {
       ScrollTrigger.batch(trigger, {
@@ -296,6 +362,7 @@ window.addEventListener('DOMContentLoaded', () => {
           background: '#1f1d1d',
           duration: 1
         }),
+
         onLeaveBack: () => gsap.to(el, {
           color: '#586166',
           background: '#fff',
@@ -308,10 +375,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   class ScrollInvertReverse {
     constructor(el, trigger) {
-      gsap.set(el, {
-        color: '#dadada',
-        background: '#1f1d1d'  
-      });
 
       ScrollTrigger.batch(trigger, {
         onEnter: () => gsap.to(el, {
@@ -329,14 +392,21 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  class HorizontalScrollInvert {
+  class HorizontalScrollInvertReverse {
     constructor(el, trigger) {
       this.el = document.querySelector(el);
       this.trigger = document.querySelector(trigger);
       this.triggerPosition = this.trigger.getBoundingClientRect().left;
       this.scrollTrigger = windowWidth / 2;
-
+      this.coverDummy = document.querySelector('.cover-dummy');
+      this.coverDummyProperty = this.coverDummy.getBoundingClientRect();
+      this.menuOutroDummy = document.querySelector('.menu-outro-dummy');
+      this.menuOutroDummyProperty = this.menuOutroDummy.getBoundingClientRect();
+      this.header = document.querySelector('.header');
+      this.pillar = document.querySelector('.pillar');
+      
       setTimeout( () => {
+        this.set();
         this.invert();
       }, scrollDuration);
       
@@ -345,8 +415,16 @@ window.addEventListener('DOMContentLoaded', () => {
       });
 
       window.addEventListener('scroll', () => {
+        console.log(scrollTop);
         this.invert();
       });
+    }
+
+    set() {
+      this.coverDummyProperty = this.coverDummy.getBoundingClientRect();
+      this.menuOutroDummyProperty = this.menuOutroDummy.getBoundingClientRect();
+      console.log(scrollTop + this.coverDummyProperty.top);
+      console.log(scrollTop + this.menuOutroDummyProperty.bottom);
     }
     
     refresh() {
@@ -358,48 +436,82 @@ window.addEventListener('DOMContentLoaded', () => {
       
           this.triggerPosition = trigger.getBoundingClientRect().left;      
           this.scrollTrigger = windowWidth / 2;
+          this.coverDummyProperty = this.coverDummy.getBoundingClientRect();
+          this.menuOutroDummyProperty = this.menuOutroDummy.getBoundingClientRect();    
 
-          if (this.scrollTrigger < this.triggerPosition) {
-            gsap.to(this.el, {
-              color: '#dadada',
-              background: '#1f1d1d',
-              duration: 1
-            });
-          } else {
-            gsap.to(this.el, {
-              color: '#586166',
-              background: '#fff',
-              duration: 1
-            });
-          }     
-          }, scrollDuration);
+          if (scrollTop > scrollTop + this.coverDummyProperty.top && scrollTop < scrollTop + this.menuOutroDummyProperty.bottom) {
+            if (this.scrollTrigger < this.triggerPosition) {
+              gsap.to(this.el, {
+                color: '#dadada',
+                background: '#1f1d1d',
+                duration: 1
+              });
+  
+              this.header.classList.add('invert-color');
+              this.header.classList.remove('base-color');
+              this.pillar.classList.add('invert-color');
+              this.pillar.classList.remove('base-color');
+                  
+            } else {
+              gsap.to(this.el, {
+                color: '#586166',
+                background: '#fff',
+                duration: 1
+              });
+  
+              this.header.classList.remove('invert-color');
+              this.header.classList.add('base-color');
+              this.pillar.classList.remove('invert-color');
+              this.pillar.classList.add('base-color');
+            }
+          }
+        }, scrollDuration);
       });
     }
 
     invert() {
       this.triggerPosition = this.trigger.getBoundingClientRect().left;
-      if (this.scrollTrigger < this.triggerPosition) {
-        gsap.to(this.el, {
-          color: '#dadada',
-          background: '#1f1d1d',
-          duration: 1
-        });
-      } else {
-        gsap.to(this.el, {
-          color: '#586166',
-          background: '#fff',
-          duration: 1
-        });
+
+      if (scrollTop > scrollTop + this.coverDummyProperty.top && scrollTop < scrollTop + this.menuOutroDummyProperty.bottom) {
+        if (this.scrollTrigger < this.triggerPosition) {
+          gsap.to(this.el, {
+            color: '#dadada',
+            background: '#1f1d1d',
+            duration: 1
+          });
+
+          this.header.classList.add('invert-color');
+          this.header.classList.remove('base-color');
+          this.pillar.classList.add('invert-color');
+          this.pillar.classList.remove('base-color');
+  
+        } else {
+          gsap.to(this.el, {
+            color: '#586166',
+            background: '#fff',
+            duration: 1
+          });
+  
+          this.header.classList.remove('invert-color');
+          this.header.classList.add('base-color');
+          this.pillar.classList.remove('invert-color');
+          this.pillar.classList.add('base-color');
+        }  
       }
     }
   }
 
-  const conceptInvert = new ScrollInvert('.concept', '.concept__content-2');
+  const headerInvertToggleClass = new InvertToggleClass('.header');
+  const pillarInvertToggleClass = new InvertToggleClass('.pillar');
+  const conceptInvert = new ScrollInvert('.concept__bg', '.concept__content-2');
+  const menuInvert = new ScrollInvert('.menu__content', '.concept__content-2');
 
   if (windowWidth <= 1024) {
-    const menuInvert = new ScrollInvertReverse('.menu__content', '.menu__item--food');
+    const menuInvertReverse = new ScrollInvertReverse('.menu__content', '.menu__item--food');
+    headerInvertToggleClass.reverseSp();
+    pillarInvertToggleClass.reverseSp();
   } else if (document.querySelectorAll('.menu__content').length > 0) {
-    const menuInvertPc = new HorizontalScrollInvert('.menu__content', '.menu__item--food');
+    const menuInvertReversePc = new HorizontalScrollInvertReverse('.menu__content', '.menu__item--food');
   }
 
   const newsInvert = new ScrollInvert('.news', '.shop');
@@ -1194,14 +1306,16 @@ window.addEventListener('DOMContentLoaded', () => {
     const parallax = new Parallax('.js-parallax', '120%')
   }
 
-  gsap.fromTo('.gallery__list', {
+  gsap.set('.gallery__body',{
     x: '100vw'
-  }, {
-    x: '0vw',
+  });
+
+  gsap.to('.gallery__body',{
+    x: 0,
     duration: 2.2,
     ease: 'power4.out',
     scrollTrigger: {
-      trigger: '.gallery__list',
+      trigger: '.gallery__body',
       start: 'top center'
     }
   });

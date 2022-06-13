@@ -43,12 +43,22 @@ window.addEventListener('DOMContentLoaded', () => {
       this.list.addEventListener('mousedown', e => {
         e.preventDefault();
         this.touchStartX = e.clientX;
+
+        gsap.set(this.list, {
+          cursor: 'grabbing'
+        });
+
         document.addEventListener('mousemove', this.mouseMove);
       });
 
       document.addEventListener('mouseup', e => {
         if (this.touchStartX !== null) {
           this.touchEndX = e.clientX;
+
+          gsap.set(this.list, {
+            cursor: ''
+          });
+
           this.end();
           document.removeEventListener('mousemove', this.mouseMove);  
         }
@@ -439,10 +449,11 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  if (window.innerWidth < 1024) {
-    const sliderSp = new SliderSp('.gallery__slider', '.gallery__list', '.gallery__item');
-  } else {
-    const slider = new Slider('.gallery__slider', '.gallery__list', '.gallery__item', '.gallery__prev', '.gallery__next');
+  if (document.querySelectorAll('.gallery__slider').length > 0) {
+    if (window.innerWidth < 1024) {
+      const sliderSp = new SliderSp('.gallery__slider', '.gallery__list', '.gallery__item');
+    } else {
+      const slider = new Slider('.gallery__slider', '.gallery__list', '.gallery__item', '.gallery__prev', '.gallery__next');
+    }  
   }
-
 });

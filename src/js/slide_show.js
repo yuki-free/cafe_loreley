@@ -292,69 +292,13 @@ window.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(this.onRaf.bind(this));
     }
   }
-  
-  const scrollShow = new ScrollShow(document.querySelector('.slide-show'));
 
-  window.addEventListener('resize', () => {
-    scrollShow.onResize();
-  });
+  if (document.querySelectorAll('.slide-show').length > 0) {
+    const scrollShow = new ScrollShow(document.querySelector('.slide-show'));
 
-  // ===========================================
-  //                  opening
-  // ===========================================
-
-  gsap.set('body', {
-    overflow: 'hidden'
-  });
-
-  gsap.set('.header__logo, .global-navi__item, .hamburger-button', {
-    yPercent: -100,
-    opacity: 0
-  });
-
-  gsap.set('.catch-copy__main span', {
-    yPercent: 50,
-    opacity: 0,
-  });
-
-  gsap.timeline().to('.opening .mask__path', {
-    'stroke-dashoffset': '0px',
-    duration: 2,
-    ease: 'none'
-  })
-  .to('.opening', {
-    opacity: 0,
-    scale: 1.2,
-    filter: 'blur(5em)',
-    'pointer-events': 'none',
-    duration: 1,
-    ease: 'expo.in'
-  }, '+=.5')
-  .to('body', {
-    overflow: 'visible'
-  })
-  .to('.header__logo', {
-    yPercent: 0,
-    opacity: 1,
-    duration: .6
-  }, '-=1')
-  .to('.global-navi__item', {
-    yPercent: 0,
-    opacity: 1,
-    duration: .6,
-    stagger: .1
-  }, '-=.8')
-  .to('.hamburger-button', {
-    yPercent: 0,
-    opacity: 1,
-    duration: .6,
-  }, '-=.4')
-  .to('.catch-copy__main span', {
-    yPercent: 0,
-    opacity: 1,
-    duration: 1.2,
-    stagger: .08
-  }, '-=1');
-
+    window.addEventListener('resize', () => {
+      scrollShow.onResize();
+    });
+  }
 });
 

@@ -39,16 +39,14 @@
   }
 
   &__image-outer {
-    width: 100vw;
+    width: 100%;
     height: 75vw;
-    margin-left: -6.6666666667vw;
     position: relative;
     overflow: hidden;
 
     @include mediaquery(pc) {
       width: 62vw;
       height: 41.33333333333333vw;
-      margin-left: -6.6666666667vw;
     }
   }
 
@@ -68,7 +66,7 @@
   }
 
   &__body {
-    padding: 3vw 0;
+    padding: 3vw 6.6666666667vw;
     line-height: 1.6;
 
     @include mediaquery(pc) {
@@ -134,9 +132,8 @@
 // ===========================================
 
 .gallery {
-  margin-left: -6.6666666667vw;
   padding-bottom: 15vw;
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
 
   @include mediaquery(pc) {

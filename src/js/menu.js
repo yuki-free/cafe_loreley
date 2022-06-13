@@ -7,10 +7,14 @@ window.addEventListener('DOMContentLoaded', () => {
   // ===========================================
 
   const hamburgerBtn = document.getElementsByClassName('hamburger-button')[0];
+  const header = document.getElementById('header');
 
   hamburgerBtn.addEventListener('click', () => {
     if (hamburgerBtn.classList.contains('is-open') !== true) {
-      const hamburgerBtnHeight = hamburgerBtn.clientHeight;
+
+      gsap.set(hamburgerBtn, {
+        'pointer-events': 'none'
+      });
 
       gsap.set('.main-menu__link', {
         yPercent: 100
@@ -23,6 +27,10 @@ window.addEventListener('DOMContentLoaded', () => {
       gsap.set('.main-menu__sub-link', {
         yPercent: 100
       });
+
+      setTimeout( () => {
+        header.classList.add('white-color');
+      }, 500);
 
       gsap.timeline()
       .to('.hamburger-button__bar--top', {
@@ -102,9 +110,22 @@ window.addEventListener('DOMContentLoaded', () => {
         stagger: .1,
         duration: .6,
         ease: 'power3.out'
-      }, '-=.4');
+      }, '-=.4')
+      .set(hamburgerBtn, {
+        'pointer-events': 'auto'
+      });
+
 
     } else {
+
+      gsap.set(hamburgerBtn, {
+        'pointer-events': 'none'
+      });
+
+      setTimeout( () => {
+        header.classList.remove('white-color');
+      }, 2000);
+
       gsap.timeline({
         defaults: {
           overwrite: true
@@ -150,6 +171,9 @@ window.addEventListener('DOMContentLoaded', () => {
       }, '-=.4')
       .to('body', {
         overflow: 'visible'
+      })
+      .set(hamburgerBtn, {
+        'pointer-events': 'auto'
       });
 
       gsap.timeline()

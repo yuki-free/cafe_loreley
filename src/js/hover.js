@@ -332,7 +332,9 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const hoverImageList = new HoverImageList('.stack-list', '.stack-list__item', '.hover-image-list', '.hover-image-list__item');
+  if (document.querySelectorAll('.stack-list').length > 0) {
+    const hoverImageList = new HoverImageList('.stack-list', '.stack-list__item', '.hover-image-list', '.hover-image-list__item');
+  }
 
   // ===========================================
   //                  mouse-stalker
