@@ -12,7 +12,7 @@
   overflow: hidden;
 
   @include mediaquery(pc) {
-    padding: 10vw 10vw 10vw;
+    padding: 6vw 10vw 6vw;
   }
 
   &__title {

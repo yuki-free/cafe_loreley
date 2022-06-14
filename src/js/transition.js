@@ -83,7 +83,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
       gsap.set('.js-load-main span', {
         yPercent: 100,
-        scaleY: 1.2
+        scaleY: 1.2,
+        opacity: 0
       });
 
       gsap.set('.js-load-sub span', {
@@ -108,6 +109,7 @@ window.addEventListener('DOMContentLoaded', () => {
       .to('.js-load-main span', {
         yPercent: 0,
         scaleY: 1,
+        opacity: 1,
         stagger: {
           amount: .6
         }

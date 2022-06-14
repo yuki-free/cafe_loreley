@@ -7,7 +7,8 @@ import vert from './shader/slide_show.vert';
 gsap.registerPlugin(ScrollTrigger);
 
 window.addEventListener('DOMContentLoaded', () => {
-  class SlideShow {
+
+  class ScrollShow {
     constructor(webgl) {
       this.webgl = webgl;
       this.webglProp = this.webgl.getBoundingClientRect();
@@ -25,58 +26,43 @@ window.addEventListener('DOMContentLoaded', () => {
       this.loadManager = new THREE.LoadingManager();
       this.loader = new THREE.TextureLoader(this.loadManager);      
   
-      this.img1 = this.loader.load('img/hero-slide1.jpg');
-      this.img2 = this.loader.load('img/hero-slide2.jpg');
-      this.img3 = this.loader.load('img/hero-slide3.jpg');
+      this.img1 = this.loader.load('img/hero__scroll-slideshow1.jpg');
+      this.img2 = this.loader.load('img/hero__scroll-slideshow2.jpg');
       this.disp = this.loader.load('img/hero__transition.png');
 
-      this.sliderImage = [this.img1, this.img2, this.img3];
-  
       this.aspect = 1080 / 1920;
   
       this.loadManager.onLoad = () => {
         this.setting();
-        this.init();
+        this.scrollTransition();
       }
     }
 
-    init() {
-      let currentNum = 0;
-      let nextNum = currentNum + 1;
-
-      const transition = () => {
-        gsap.to(this.material.uniforms.uAnimation, {
+    scrollTransition() {
+      ScrollTrigger.batch('.catch-copy', {
+        onEnter: () => gsap.to(this.material.uniforms.uAnimation, {
           value: 1,
-          duration: 2,
+          duration: 1.5,
           ease: 'expo.in'
-        });
-
-        if (nextNum >= this.sliderImage.length - 1) {
-          currentNum = nextNum;
-          nextNum = 0;
-        } else {
-          currentNum = nextNum;
-          nextNum += 1;  
-        }
-
-        setTimeout( () => {
-          gsap.set(this.material.uniforms.uTexture1, {
-            value: this.sliderImage[currentNum]
-          });
-
-          gsap.set(this.material.uniforms.uTexture2, {
-            value: this.sliderImage[nextNum]
-          });
-
-          gsap.set(this.material.uniforms.uAnimation, {
-            value: 0
-          });
-
-          setTimeout(transition, 5000);
-        }, 3000);
-      }
-
-      setTimeout(transition, 5000);
+        }),
+        onLeaveBack: () => gsap.to(this.material.uniforms.uAnimation, {
+          value: 0,
+          duration: 1.5,
+          ease: 'expo.out'
+        }),
+        onLeave: () => gsap.to(this.material.uniforms.uAnimation, {
+          value: 0,
+          duration: 1.5,
+          ease: 'expo.out'
+        }),
+        onEnterBack: () => gsap.to(this.material.uniforms.uAnimation, {
+          value: 1,
+          duration: 1.5,
+          ease: 'expo.in'
+        }),
+        start: 'top -1%',
+        markers: true
+      });
     }
 
   
@@ -153,14 +139,8 @@ window.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(this.onRaf.bind(this));
     }
   }
-  
-  // const slideShow = new SlideShow(document.querySelector('.slide-show'));
 
-  // window.addEventListener('resize', () => {
-  //   slideShow.onResize();
-  // });
-
-  class ScrollShow {
+  class ScrollShowSp {
     constructor(webgl) {
       this.webgl = webgl;
       this.webglProp = this.webgl.getBoundingClientRect();
@@ -178,21 +158,20 @@ window.addEventListener('DOMContentLoaded', () => {
       this.loadManager = new THREE.LoadingManager();
       this.loader = new THREE.TextureLoader(this.loadManager);      
   
-      this.img1 = this.loader.load('img/hero__scroll-slideshow1.jpg');
-      this.img2 = this.loader.load('img/hero__scroll-slideshow2.jpg');
+      this.img1 = this.loader.load('img/hero__scroll-slideshow1--sp.jpg');
+      this.img2 = this.loader.load('img/hero__scroll-slideshow2--sp.jpg');
       this.disp = this.loader.load('img/hero__transition.png');
 
-      this.aspect = 1080 / 1920;
+      this.aspect = 1920 / 1080;
   
       this.loadManager.onLoad = () => {
         this.setting();
         this.scrollTransition();
       }
-
     }
 
     scrollTransition() {
-      ScrollTrigger.batch('.catch-copy__main', {
+      ScrollTrigger.batch('.catch-copy', {
         onEnter: () => gsap.to(this.material.uniforms.uAnimation, {
           value: 1,
           duration: 1.5,
@@ -213,7 +192,7 @@ window.addEventListener('DOMContentLoaded', () => {
           duration: 1.5,
           ease: 'expo.in'
         }),
-        start: 'top 49%',
+        start: 'top -1%',
         markers: true
       });
     }
@@ -294,11 +273,22 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   if (document.querySelectorAll('.slide-show').length > 0) {
-    const scrollShow = new ScrollShow(document.querySelector('.slide-show'));
 
-    window.addEventListener('resize', () => {
-      scrollShow.onResize();
-    });
+    if (window.innerWidth <= 1024) {
+      const scrollShowSp = new ScrollShowSp(document.querySelector('.slide-show'));
+
+      console.log('sp');
+      window.addEventListener('resize', () => {
+        scrollShowSp.onResize();
+      });
+
+    } else {
+      const scrollShow = new ScrollShow(document.querySelector('.slide-show'));
+
+      window.addEventListener('resize', () => {
+        scrollShow.onResize();
+      });  
+    }
   }
 });
 

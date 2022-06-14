@@ -165,5 +165,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const scrollBar = new ScrollBar('.scroll-bar', '.scroll-bar__thumb');
+  if (window.innerWidth > 1024) {
+    const scrollBar = new ScrollBar('.scroll-bar', '.scroll-bar__thumb');
+  }
 });

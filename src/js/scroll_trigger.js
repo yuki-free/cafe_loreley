@@ -251,6 +251,33 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    gsap.set('.outro__body', {
+      xPercent: 50
+    });
+
+    gsap.to('.outro__body', {
+      xPercent: 0,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.menu__margin--outro .position-dummy',
+        start: `top top`,
+        endTrigger: '.menu__margin--outro',
+        end: `top top`,
+        scrub: .6
+      }
+    });
+
+    gsap.to('.outro__body', {
+      yPercent: -50,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.menu-outro-dummy',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: .6
+      }
+    });
+
     // ----------------- footer -------------------
   
     gsap.set('.footer', {
@@ -392,112 +419,65 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  class HorizontalScrollInvertReverse {
-    constructor(el, trigger) {
-      this.el = document.querySelector(el);
-      this.trigger = document.querySelector(trigger);
-      this.triggerPosition = this.trigger.getBoundingClientRect().left;
-      this.scrollTrigger = windowWidth / 2;
-      this.coverDummy = document.querySelector('.cover-dummy');
-      this.coverDummyProperty = this.coverDummy.getBoundingClientRect();
-      this.menuOutroDummy = document.querySelector('.menu-outro-dummy');
-      this.menuOutroDummyProperty = this.menuOutroDummy.getBoundingClientRect();
+  class ScrollInvertReverseDummy {
+    constructor(dummy) {
+      this.dummy = document.querySelector('.position-dummy--menu-food');
+      this.dummyOffset = 0;
       this.header = document.querySelector('.header');
       this.pillar = document.querySelector('.pillar');
-      
-      setTimeout( () => {
-        this.set();
-        this.invert();
-      }, scrollDuration);
-      
+
+      this.dummySet();
+
       window.addEventListener('resize', () => {
-        this.refresh();
+        this.dummySet();
       });
 
-      window.addEventListener('scroll', () => {
-        console.log(scrollTop);
-        this.invert();
-      });
+      this.InvertReverse();
     }
 
-    set() {
-      this.coverDummyProperty = this.coverDummy.getBoundingClientRect();
-      this.menuOutroDummyProperty = this.menuOutroDummy.getBoundingClientRect();
-      console.log(scrollTop + this.coverDummyProperty.top);
-      console.log(scrollTop + this.menuOutroDummyProperty.bottom);
-    }
-    
-    refresh() {
-      window.addEventListener( "resize", () => {
-        if ( timeoutId ) return ;
-      
-        timeoutId = setTimeout( () => {
-          timeoutId = 0 ;
-      
-          this.triggerPosition = trigger.getBoundingClientRect().left;      
-          this.scrollTrigger = windowWidth / 2;
-          this.coverDummyProperty = this.coverDummy.getBoundingClientRect();
-          this.menuOutroDummyProperty = this.menuOutroDummy.getBoundingClientRect();    
+    dummySet() {
+      const menuContent = document.querySelector('.menu__content');
+      const menuListFood = document.querySelector('.menu__item--food');
+      const menuContentLeft = menuContent.getBoundingClientRect().left;
+      const menuListFoodLeft = menuListFood.getBoundingClientRect().left;
 
-          if (scrollTop > scrollTop + this.coverDummyProperty.top && scrollTop < scrollTop + this.menuOutroDummyProperty.bottom) {
-            if (this.scrollTrigger < this.triggerPosition) {
-              gsap.to(this.el, {
-                color: '#dadada',
-                background: '#1f1d1d',
-                duration: 1
-              });
-  
-              this.header.classList.add('invert-color');
-              this.header.classList.remove('base-color');
-              this.pillar.classList.add('invert-color');
-              this.pillar.classList.remove('base-color');
-                  
-            } else {
-              gsap.to(this.el, {
-                color: '#586166',
-                background: '#fff',
-                duration: 1
-              });
-  
-              this.header.classList.remove('invert-color');
-              this.header.classList.add('base-color');
-              this.pillar.classList.remove('invert-color');
-              this.pillar.classList.add('base-color');
-            }
-          }
-        }, scrollDuration);
+      this.dummyOffset = menuListFoodLeft - menuContentLeft + windowWidth / 2;
+
+      gsap.set(this.dummy, {
+        y: this.dummyOffset
       });
     }
 
-    invert() {
-      this.triggerPosition = this.trigger.getBoundingClientRect().left;
+    InvertReverse() {
+      ScrollTrigger.batch(this.dummy, {
+        onEnter: () => gsap.to('.menu__content', {
+          color: '#586166',
+          background: '#fff',
+          duration: 1
+        }),
+        onLeaveBack: () => gsap.to('.menu__content', {
+          color: '#dadada',
+          background: '#1f1d1d',
+          duration: 1
+        }),
+        start: 'top bottom'
+      });
 
-      if (scrollTop > scrollTop + this.coverDummyProperty.top && scrollTop < scrollTop + this.menuOutroDummyProperty.bottom) {
-        if (this.scrollTrigger < this.triggerPosition) {
-          gsap.to(this.el, {
-            color: '#dadada',
-            background: '#1f1d1d',
-            duration: 1
-          });
-
-          this.header.classList.add('invert-color');
-          this.header.classList.remove('base-color');
-          this.pillar.classList.add('invert-color');
-          this.pillar.classList.remove('base-color');
-  
-        } else {
-          gsap.to(this.el, {
-            color: '#586166',
-            background: '#fff',
-            duration: 1
-          });
-  
+      ScrollTrigger.batch(this.dummy, {
+        onEnter: () => {
           this.header.classList.remove('invert-color');
           this.header.classList.add('base-color');
           this.pillar.classList.remove('invert-color');
           this.pillar.classList.add('base-color');
-        }  
-      }
+        },
+        onLeaveBack: () => {
+          this.header.classList.add('invert-color');
+          this.header.classList.remove('base-color');
+          this.pillar.classList.add('invert-color');
+          this.pillar.classList.remove('base-color');
+        },
+        start: 'top bottom'
+      });
     }
   }
 
@@ -511,7 +491,7 @@ window.addEventListener('DOMContentLoaded', () => {
     headerInvertToggleClass.reverseSp();
     pillarInvertToggleClass.reverseSp();
   } else if (document.querySelectorAll('.menu__content').length > 0) {
-    const menuInvertReversePc = new HorizontalScrollInvertReverse('.menu__content', '.menu__item--food');
+    const menuInvertReversePc = new ScrollInvertReverseDummy('.position-dummy--menu-food');
   }
 
   const newsInvert = new ScrollInvert('.news', '.shop');
@@ -543,7 +523,7 @@ window.addEventListener('DOMContentLoaded', () => {
           },
           scrollTrigger: {
             trigger: this.trigger[i],
-            start: 'top center'
+            start: 'top 75%'
           }
         });
       }
@@ -569,7 +549,7 @@ window.addEventListener('DOMContentLoaded', () => {
           duration: 1,
           scrollTrigger: {
             trigger: this.trigger[i],
-            start: 'top center'
+            start: 'top 75%'
           }
         });
       }
@@ -665,7 +645,7 @@ window.addEventListener('DOMContentLoaded', () => {
           },
           scrollTrigger: {
             trigger: this.trigger[i],
-            start: 'top center'
+            start: 'top 75%'
           }
         });
       }
@@ -693,7 +673,7 @@ window.addEventListener('DOMContentLoaded', () => {
           },
           scrollTrigger: {
             trigger: this.trigger[i],
-            start: 'top center'
+            start: 'top 75%'
           }
         });  
       }
@@ -721,7 +701,7 @@ window.addEventListener('DOMContentLoaded', () => {
           },
           scrollTrigger: {
             trigger: this.trigger[i],
-            start: 'top top'
+            start: 'top 1%'
           }
         });
       }
@@ -749,7 +729,7 @@ window.addEventListener('DOMContentLoaded', () => {
           },
           scrollTrigger: {
             trigger: this.trigger[i],
-            start: 'top top'
+            start: 'top 1%'
           }
         }); 
       }
@@ -785,7 +765,6 @@ window.addEventListener('DOMContentLoaded', () => {
         gsap.from(this.trigger[i].querySelectorAll(this.main), {
           yPercent: 100,
           scaleY: 1.2,
-          delay: .6,
           stagger: {
             amount: .6
           },
@@ -802,7 +781,7 @@ window.addEventListener('DOMContentLoaded', () => {
         gsap.from(this.trigger[i].querySelectorAll(this.sub), {
           opacity: 0,
           filter: 'blur(1em)',
-          delay: 1.2,
+          delay: .6,
           ease: 'power3.out',
           stagger: {
             amount: .4,
@@ -821,7 +800,7 @@ window.addEventListener('DOMContentLoaded', () => {
         gsap.from(this.trigger[i].querySelectorAll(this.text), {
           opacity: 0,
           y: '3em',
-          delay: 1.6,
+          delay: 1,
           duration: 1,
           scrollTrigger: {
             trigger: this.trigger[i],
@@ -853,7 +832,7 @@ window.addEventListener('DOMContentLoaded', () => {
           duration: 1,
           scrollTrigger: {
             trigger: this.el[i].parentNode,
-            start: 'top center'
+            start: 'top 75%'
           }
         });
       }
@@ -941,7 +920,7 @@ window.addEventListener('DOMContentLoaded', () => {
           delay: .4,
           scrollTrigger: {
             trigger: this.el[i],
-            start: 'top center'
+            start: 'top 75%'
           }
         });
 
@@ -954,7 +933,7 @@ window.addEventListener('DOMContentLoaded', () => {
           delay: .8,
           scrollTrigger: {
             trigger: this.el[i],
-            start: 'top center'
+            start: 'top 75%'
           }
         });
 
@@ -966,7 +945,7 @@ window.addEventListener('DOMContentLoaded', () => {
           duration: .4,
           scrollTrigger: {
             trigger: this.el[i],
-            start: 'top center'
+            start: 'top 75%'
           }
         });
       }
@@ -1056,33 +1035,6 @@ window.addEventListener('DOMContentLoaded', () => {
   } else {
     const slideInHorizontal = new SlideInHorizontal('.js-slide-in--horizontal', '.js-slide-in__image--horizontal', '.js-slide-in__overlay--horizontal');
   }
-
-  // class RotateInHorizontal {
-  //   constructor(el) {
-  //     this.el = document.querySelectorAll(el);
-
-  //     this.fadeIn();
-  //   }
-
-  //   fadeIn() {
-  //     for (let i = 0; i < this.el.length; i++) {
-  //       gsap.from(this.el[i], {
-  //         rotationY: 90,
-  //         ease: 'elastic.out(1, 0.5)',
-  //         duration: .8,
-  //         scrollTrigger: {
-  //           trigger: this.el[i],
-  //           start: 'top center',
-  //           markers: true
-  //         }
-  //       });
-  //     }
-  //   }
-  // }
-
-  // if (windowWidth <= 1024) {
-  //   const rotateInHorizontal = new RotateInHorizontal('.js-rotate-in--horizontal');
-  // }
 
   // ===========================================
   //                  concept
@@ -1249,7 +1201,7 @@ window.addEventListener('DOMContentLoaded', () => {
     stagger: .3,
     scrollTrigger: {
       trigger: '.stack-list',
-      start: 'top center'
+      start: 'top 75%'
     }
   });
 
@@ -1316,7 +1268,7 @@ window.addEventListener('DOMContentLoaded', () => {
     ease: 'power4.out',
     scrollTrigger: {
       trigger: '.gallery__body',
-      start: 'top center'
+      start: 'top 75%'
     }
   });
 
