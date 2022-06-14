@@ -7,6 +7,10 @@ export let galleryOffset = [];
 
 window.addEventListener('DOMContentLoaded', () => {
 
+  gsap.config({
+    nullTargetWarn: false,
+  });
+
   const scrollDuration = 1400;
 
   let windowWidth = window.innerWidth;

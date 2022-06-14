@@ -60,8 +60,7 @@ window.addEventListener('DOMContentLoaded', () => {
           duration: 1.5,
           ease: 'expo.in'
         }),
-        start: 'top -1%',
-        markers: true
+        start: 'top -1%'
       });
     }
 
@@ -192,8 +191,7 @@ window.addEventListener('DOMContentLoaded', () => {
           duration: 1.5,
           ease: 'expo.in'
         }),
-        start: 'top -1%',
-        markers: true
+        start: 'top -1%'
       });
     }
 
