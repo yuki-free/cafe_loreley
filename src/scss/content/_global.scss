@@ -152,11 +152,11 @@
   }
 
   &__image {
-    width: 60px;
+    width: min(16vw, 80px);
     height: auto;
 
     @include mediaquery(pc) {
-      width: 80px;
+      width: 5vw;
     }
   }
 }
